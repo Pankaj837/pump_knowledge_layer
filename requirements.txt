@@ -1,0 +1,4 @@
+networkx>=3.0
+matplotlib>=3.7   # optional: only for the PNG graph figures
+pytest>=7.0       # optional: tests also run with `python -m unittest discover -s tests`
+rdflib>=6.0       # optional: only used by the test that validates the Turtle export

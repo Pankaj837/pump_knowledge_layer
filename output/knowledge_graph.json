@@ -1,0 +1,2812 @@
+{
+  "graph": {
+    "name": "Knowledge layer - P-101",
+    "primary_equipment": "P-101"
+  },
+  "nodes": [
+    {
+      "id": "Plant1",
+      "node_type": "FunctionalLocation",
+      "name": "Plant 1",
+      "level": "Site",
+      "asset_path": "Plant1"
+    },
+    {
+      "id": "Utilities",
+      "node_type": "FunctionalLocation",
+      "name": "Utilities Area",
+      "level": "Area",
+      "asset_path": "Plant1/Utilities"
+    },
+    {
+      "id": "CoolingWater",
+      "node_type": "FunctionalLocation",
+      "name": "Cooling Water System",
+      "level": "System",
+      "asset_path": "Plant1/Utilities/CoolingWater"
+    },
+    {
+      "id": "TK-100",
+      "node_type": "Equipment",
+      "name": "Cooling water suction tank",
+      "equipment_class": "Tank",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/TK-100"
+    },
+    {
+      "id": "STR-100",
+      "node_type": "Equipment",
+      "name": "Suction strainer",
+      "equipment_class": "Strainer",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/STR-100"
+    },
+    {
+      "id": "HV-101",
+      "node_type": "Equipment",
+      "name": "Suction isolation valve",
+      "equipment_class": "ManualValve",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/HV-101"
+    },
+    {
+      "id": "P-101",
+      "node_type": "Equipment",
+      "name": "Cooling water pump",
+      "equipment_class": "CentrifugalPump",
+      "parameters": {
+        "rated_flow_m3h": 100.0,
+        "rated_head_m": 50.0,
+        "shutoff_head_m": 60.0,
+        "npshr_rated_m": 4.0,
+        "speed_rpm": 2950,
+        "motor_rated_power_kw": 22.0,
+        "motor_full_load_current_a": 40.0,
+        "suction_pipe_id_m": 0.125,
+        "design_fluid_temp_c": 30.0,
+        "fluid": "cooling water",
+        "por_flow_m3h": [
+          70.0,
+          120.0
+        ],
+        "running_current_threshold_a": 3.0
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101"
+    },
+    {
+      "id": "NRV-102",
+      "node_type": "Equipment",
+      "name": "Discharge check valve",
+      "equipment_class": "CheckValve",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/NRV-102"
+    },
+    {
+      "id": "HV-102",
+      "node_type": "Equipment",
+      "name": "Discharge isolation valve",
+      "equipment_class": "ManualValve",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/HV-102"
+    },
+    {
+      "id": "P-101.CASING",
+      "node_type": "Component",
+      "name": "Volute casing",
+      "component_class": "Casing",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/CASING"
+    },
+    {
+      "id": "P-101.IMPELLER",
+      "node_type": "Component",
+      "name": "Closed impeller",
+      "component_class": "Impeller",
+      "parameters": {
+        "vanes": 6
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/IMPELLER"
+    },
+    {
+      "id": "P-101.WEAR-RINGS",
+      "node_type": "Component",
+      "name": "Wear rings",
+      "component_class": "WearRing",
+      "parameters": {
+        "design_clearance_mm": 0.35
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/WEAR-RINGS"
+    },
+    {
+      "id": "P-101.SHAFT",
+      "node_type": "Component",
+      "name": "Pump shaft",
+      "component_class": "Shaft",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/SHAFT"
+    },
+    {
+      "id": "P-101.BRG-DE",
+      "node_type": "Component",
+      "name": "Drive-end bearing",
+      "component_class": "RollingBearing",
+      "parameters": {
+        "type": "6310 C3"
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BRG-DE"
+    },
+    {
+      "id": "P-101.BRG-NDE",
+      "node_type": "Component",
+      "name": "Non-drive-end bearing",
+      "component_class": "RollingBearing",
+      "parameters": {
+        "type": "7310 BECBM pair"
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BRG-NDE"
+    },
+    {
+      "id": "P-101.SEAL",
+      "node_type": "Component",
+      "name": "Mechanical seal",
+      "component_class": "MechanicalSeal",
+      "parameters": {
+        "flush_plan": "API 682 Plan 11"
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/SEAL"
+    },
+    {
+      "id": "P-101.COUPLING",
+      "node_type": "Component",
+      "name": "Flexible coupling",
+      "component_class": "Coupling",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/COUPLING"
+    },
+    {
+      "id": "P-101.MOTOR",
+      "node_type": "Component",
+      "name": "Induction motor",
+      "component_class": "ElectricMotor",
+      "parameters": {
+        "rated_power_kw": 22.0,
+        "voltage_v": 400,
+        "insulation_class": "F"
+      },
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/MOTOR"
+    },
+    {
+      "id": "P-101.BASEPLATE",
+      "node_type": "Component",
+      "name": "Baseplate and foundation",
+      "component_class": "Baseplate",
+      "parameters": {},
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BASEPLATE"
+    },
+    {
+      "id": "PT-101",
+      "node_type": "Sensor",
+      "key": "suction_pressure",
+      "name": "Suction pressure",
+      "measurand": "pressure",
+      "unit": "bar(a)",
+      "lo_lo": 0.6,
+      "lo": 0.9,
+      "hi": 2.5,
+      "hi_hi": null,
+      "normal_value": 1.6,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/CASING/PT-101"
+    },
+    {
+      "id": "ALM:PT-101-LL",
+      "node_type": "Alarm",
+      "name": "Suction pressure LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 0.6,
+      "severity": "HIGH",
+      "message": "Suction pressure LOW_LOW (< 0.6 bar(a))"
+    },
+    {
+      "id": "ALM:PT-101-L",
+      "node_type": "Alarm",
+      "name": "Suction pressure LOW",
+      "state": "LOW",
+      "limit": 0.9,
+      "severity": "MEDIUM",
+      "message": "Suction pressure LOW (< 0.9 bar(a))"
+    },
+    {
+      "id": "ALM:PT-101-H",
+      "node_type": "Alarm",
+      "name": "Suction pressure HIGH",
+      "state": "HIGH",
+      "limit": 2.5,
+      "severity": "MEDIUM",
+      "message": "Suction pressure HIGH (> 2.5 bar(a))"
+    },
+    {
+      "id": "PT-102",
+      "node_type": "Sensor",
+      "key": "discharge_pressure",
+      "name": "Discharge pressure",
+      "measurand": "pressure",
+      "unit": "bar(a)",
+      "lo_lo": 3.0,
+      "lo": 5.6,
+      "hi": 7.2,
+      "hi_hi": 8.0,
+      "normal_value": 6.5,
+      "note": "NORMAL band = pump curve over the Preferred Operating Region",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/CASING/PT-102"
+    },
+    {
+      "id": "ALM:PT-102-LL",
+      "node_type": "Alarm",
+      "name": "Discharge pressure LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 3.0,
+      "severity": "HIGH",
+      "message": "Discharge pressure LOW_LOW (< 3.0 bar(a))"
+    },
+    {
+      "id": "ALM:PT-102-L",
+      "node_type": "Alarm",
+      "name": "Discharge pressure LOW",
+      "state": "LOW",
+      "limit": 5.6,
+      "severity": "MEDIUM",
+      "message": "Discharge pressure LOW (< 5.6 bar(a))"
+    },
+    {
+      "id": "ALM:PT-102-H",
+      "node_type": "Alarm",
+      "name": "Discharge pressure HIGH",
+      "state": "HIGH",
+      "limit": 7.2,
+      "severity": "MEDIUM",
+      "message": "Discharge pressure HIGH (> 7.2 bar(a))"
+    },
+    {
+      "id": "ALM:PT-102-HH",
+      "node_type": "Alarm",
+      "name": "Discharge pressure HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 8.0,
+      "severity": "HIGH",
+      "message": "Discharge pressure HIGH_HIGH (> 8.0 bar(a))"
+    },
+    {
+      "id": "FT-101",
+      "node_type": "Sensor",
+      "key": "flow",
+      "name": "Discharge flow",
+      "measurand": "volumetric flow",
+      "unit": "m3/h",
+      "lo_lo": 10.0,
+      "lo": 70.0,
+      "hi": 120.0,
+      "hi_hi": 135.0,
+      "normal_value": 100.0,
+      "note": "LOW/HIGH = outside API 610 Preferred Operating Region",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/FT-101"
+    },
+    {
+      "id": "ALM:FT-101-LL",
+      "node_type": "Alarm",
+      "name": "Discharge flow LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 10.0,
+      "severity": "HIGH",
+      "message": "Discharge flow LOW_LOW (< 10.0 m3/h)"
+    },
+    {
+      "id": "ALM:FT-101-L",
+      "node_type": "Alarm",
+      "name": "Discharge flow LOW",
+      "state": "LOW",
+      "limit": 70.0,
+      "severity": "MEDIUM",
+      "message": "Discharge flow LOW (< 70.0 m3/h)"
+    },
+    {
+      "id": "ALM:FT-101-H",
+      "node_type": "Alarm",
+      "name": "Discharge flow HIGH",
+      "state": "HIGH",
+      "limit": 120.0,
+      "severity": "MEDIUM",
+      "message": "Discharge flow HIGH (> 120.0 m3/h)"
+    },
+    {
+      "id": "ALM:FT-101-HH",
+      "node_type": "Alarm",
+      "name": "Discharge flow HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 135.0,
+      "severity": "HIGH",
+      "message": "Discharge flow HIGH_HIGH (> 135.0 m3/h)"
+    },
+    {
+      "id": "VT-101",
+      "node_type": "Sensor",
+      "key": "radial_vibration",
+      "name": "DE bearing radial vibration",
+      "measurand": "vibration velocity (RMS)",
+      "unit": "mm/s",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 4.5,
+      "hi_hi": 7.1,
+      "normal_value": 2.0,
+      "note": "ISO 10816-3 Group 2, flexible",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BRG-DE/VT-101"
+    },
+    {
+      "id": "ALM:VT-101-H",
+      "node_type": "Alarm",
+      "name": "DE bearing radial vibration HIGH",
+      "state": "HIGH",
+      "limit": 4.5,
+      "severity": "MEDIUM",
+      "message": "DE bearing radial vibration HIGH (> 4.5 mm/s)"
+    },
+    {
+      "id": "ALM:VT-101-HH",
+      "node_type": "Alarm",
+      "name": "DE bearing radial vibration HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 7.1,
+      "severity": "HIGH",
+      "message": "DE bearing radial vibration HIGH_HIGH (> 7.1 mm/s)"
+    },
+    {
+      "id": "VT-102",
+      "node_type": "Sensor",
+      "key": "axial_vibration",
+      "name": "DE bearing axial vibration",
+      "measurand": "vibration velocity (RMS)",
+      "unit": "mm/s",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 4.5,
+      "hi_hi": 7.1,
+      "normal_value": 1.5,
+      "note": "ISO 10816-3 Group 2, flexible",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BRG-DE/VT-102"
+    },
+    {
+      "id": "ALM:VT-102-H",
+      "node_type": "Alarm",
+      "name": "DE bearing axial vibration HIGH",
+      "state": "HIGH",
+      "limit": 4.5,
+      "severity": "MEDIUM",
+      "message": "DE bearing axial vibration HIGH (> 4.5 mm/s)"
+    },
+    {
+      "id": "ALM:VT-102-HH",
+      "node_type": "Alarm",
+      "name": "DE bearing axial vibration HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 7.1,
+      "severity": "HIGH",
+      "message": "DE bearing axial vibration HIGH_HIGH (> 7.1 mm/s)"
+    },
+    {
+      "id": "TT-101",
+      "node_type": "Sensor",
+      "key": "bearing_temperature",
+      "name": "DE bearing temperature",
+      "measurand": "temperature",
+      "unit": "degC",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 82.0,
+      "hi_hi": 93.0,
+      "normal_value": 60.0,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/BRG-DE/TT-101"
+    },
+    {
+      "id": "ALM:TT-101-H",
+      "node_type": "Alarm",
+      "name": "DE bearing temperature HIGH",
+      "state": "HIGH",
+      "limit": 82.0,
+      "severity": "MEDIUM",
+      "message": "DE bearing temperature HIGH (> 82.0 degC)"
+    },
+    {
+      "id": "ALM:TT-101-HH",
+      "node_type": "Alarm",
+      "name": "DE bearing temperature HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 93.0,
+      "severity": "HIGH",
+      "message": "DE bearing temperature HIGH_HIGH (> 93.0 degC)"
+    },
+    {
+      "id": "TT-102",
+      "node_type": "Sensor",
+      "key": "fluid_temperature",
+      "name": "Pumped fluid temperature",
+      "measurand": "temperature",
+      "unit": "degC",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 45.0,
+      "hi_hi": 60.0,
+      "normal_value": 30.0,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/TT-102"
+    },
+    {
+      "id": "ALM:TT-102-H",
+      "node_type": "Alarm",
+      "name": "Pumped fluid temperature HIGH",
+      "state": "HIGH",
+      "limit": 45.0,
+      "severity": "MEDIUM",
+      "message": "Pumped fluid temperature HIGH (> 45.0 degC)"
+    },
+    {
+      "id": "ALM:TT-102-HH",
+      "node_type": "Alarm",
+      "name": "Pumped fluid temperature HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 60.0,
+      "severity": "HIGH",
+      "message": "Pumped fluid temperature HIGH_HIGH (> 60.0 degC)"
+    },
+    {
+      "id": "TT-103",
+      "node_type": "Sensor",
+      "key": "motor_winding_temperature",
+      "name": "Motor winding temperature",
+      "measurand": "temperature",
+      "unit": "degC",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 140.0,
+      "hi_hi": 155.0,
+      "normal_value": 95.0,
+      "note": "Class F insulation (155 degC)",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/MOTOR/TT-103"
+    },
+    {
+      "id": "ALM:TT-103-H",
+      "node_type": "Alarm",
+      "name": "Motor winding temperature HIGH",
+      "state": "HIGH",
+      "limit": 140.0,
+      "severity": "MEDIUM",
+      "message": "Motor winding temperature HIGH (> 140.0 degC)"
+    },
+    {
+      "id": "ALM:TT-103-HH",
+      "node_type": "Alarm",
+      "name": "Motor winding temperature HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 155.0,
+      "severity": "HIGH",
+      "message": "Motor winding temperature HIGH_HIGH (> 155.0 degC)"
+    },
+    {
+      "id": "TT-104",
+      "node_type": "Sensor",
+      "key": "seal_chamber_temperature",
+      "name": "Seal chamber temperature",
+      "measurand": "temperature",
+      "unit": "degC",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 70.0,
+      "hi_hi": 90.0,
+      "normal_value": 45.0,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/SEAL/TT-104"
+    },
+    {
+      "id": "ALM:TT-104-H",
+      "node_type": "Alarm",
+      "name": "Seal chamber temperature HIGH",
+      "state": "HIGH",
+      "limit": 70.0,
+      "severity": "MEDIUM",
+      "message": "Seal chamber temperature HIGH (> 70.0 degC)"
+    },
+    {
+      "id": "ALM:TT-104-HH",
+      "node_type": "Alarm",
+      "name": "Seal chamber temperature HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 90.0,
+      "severity": "HIGH",
+      "message": "Seal chamber temperature HIGH_HIGH (> 90.0 degC)"
+    },
+    {
+      "id": "IT-101",
+      "node_type": "Sensor",
+      "key": "motor_current",
+      "name": "Motor current",
+      "measurand": "electric current",
+      "unit": "A",
+      "lo_lo": null,
+      "lo": 22.0,
+      "hi": 40.0,
+      "hi_hi": 44.0,
+      "normal_value": 33.0,
+      "note": "hi = full-load current",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/MOTOR/IT-101"
+    },
+    {
+      "id": "ALM:IT-101-L",
+      "node_type": "Alarm",
+      "name": "Motor current LOW",
+      "state": "LOW",
+      "limit": 22.0,
+      "severity": "MEDIUM",
+      "message": "Motor current LOW (< 22.0 A)"
+    },
+    {
+      "id": "ALM:IT-101-H",
+      "node_type": "Alarm",
+      "name": "Motor current HIGH",
+      "state": "HIGH",
+      "limit": 40.0,
+      "severity": "MEDIUM",
+      "message": "Motor current HIGH (> 40.0 A)"
+    },
+    {
+      "id": "ALM:IT-101-HH",
+      "node_type": "Alarm",
+      "name": "Motor current HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 44.0,
+      "severity": "HIGH",
+      "message": "Motor current HIGH_HIGH (> 44.0 A)"
+    },
+    {
+      "id": "LS-101",
+      "node_type": "Sensor",
+      "key": "seal_leak",
+      "name": "Seal leak detector",
+      "measurand": "leak switch (0/1)",
+      "unit": "-",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 0.5,
+      "hi_hi": null,
+      "normal_value": 0.0,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/SEAL/LS-101"
+    },
+    {
+      "id": "ALM:LS-101-H",
+      "node_type": "Alarm",
+      "name": "Seal leak detector HIGH",
+      "state": "HIGH",
+      "limit": 0.5,
+      "severity": "MEDIUM",
+      "message": "Seal leak detector HIGH (> 0.5)"
+    },
+    {
+      "id": "LT-100",
+      "node_type": "Sensor",
+      "key": "suction_tank_level",
+      "name": "Suction tank level",
+      "measurand": "level",
+      "unit": "%",
+      "lo_lo": 10.0,
+      "lo": 20.0,
+      "hi": 95.0,
+      "hi_hi": null,
+      "normal_value": 70.0,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/TK-100/LT-100"
+    },
+    {
+      "id": "ALM:LT-100-LL",
+      "node_type": "Alarm",
+      "name": "Suction tank level LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 10.0,
+      "severity": "HIGH",
+      "message": "Suction tank level LOW_LOW (< 10.0 %)"
+    },
+    {
+      "id": "ALM:LT-100-L",
+      "node_type": "Alarm",
+      "name": "Suction tank level LOW",
+      "state": "LOW",
+      "limit": 20.0,
+      "severity": "MEDIUM",
+      "message": "Suction tank level LOW (< 20.0 %)"
+    },
+    {
+      "id": "ALM:LT-100-H",
+      "node_type": "Alarm",
+      "name": "Suction tank level HIGH",
+      "state": "HIGH",
+      "limit": 95.0,
+      "severity": "MEDIUM",
+      "message": "Suction tank level HIGH (> 95.0 %)"
+    },
+    {
+      "id": "PDT-100",
+      "node_type": "Sensor",
+      "key": "strainer_dp",
+      "name": "Suction strainer differential pressure",
+      "measurand": "differential pressure",
+      "unit": "bar",
+      "lo_lo": null,
+      "lo": null,
+      "hi": 0.3,
+      "hi_hi": 0.6,
+      "normal_value": 0.05,
+      "note": "",
+      "asset_path": "Plant1/Utilities/CoolingWater/STR-100/PDT-100"
+    },
+    {
+      "id": "ALM:PDT-100-H",
+      "node_type": "Alarm",
+      "name": "Suction strainer differential pressure HIGH",
+      "state": "HIGH",
+      "limit": 0.3,
+      "severity": "MEDIUM",
+      "message": "Suction strainer differential pressure HIGH (> 0.3 bar)"
+    },
+    {
+      "id": "ALM:PDT-100-HH",
+      "node_type": "Alarm",
+      "name": "Suction strainer differential pressure HIGH_HIGH",
+      "state": "HIGH_HIGH",
+      "limit": 0.6,
+      "severity": "HIGH",
+      "message": "Suction strainer differential pressure HIGH_HIGH (> 0.6 bar)"
+    },
+    {
+      "id": "NPSH-101",
+      "node_type": "VirtualSensor",
+      "key": "npsh_margin",
+      "name": "NPSH margin ratio",
+      "unit": "-",
+      "formula": "NPSHa / NPSH3 with NPSHa = (p_s - p_v(T)) / (rho g) + v^2/2g",
+      "lo_lo": 1.1,
+      "lo": 1.3,
+      "hi": null,
+      "hi_hi": null,
+      "note": "margin < 1.3 => cavitation risk",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/NPSH-101"
+    },
+    {
+      "id": "ALM:NPSH-101-LL",
+      "node_type": "Alarm",
+      "name": "NPSH margin ratio LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 1.1,
+      "severity": "HIGH",
+      "message": "NPSH margin ratio LOW_LOW (< 1.1)"
+    },
+    {
+      "id": "ALM:NPSH-101-L",
+      "node_type": "Alarm",
+      "name": "NPSH margin ratio LOW",
+      "state": "LOW",
+      "limit": 1.3,
+      "severity": "MEDIUM",
+      "message": "NPSH margin ratio LOW (< 1.3)"
+    },
+    {
+      "id": "HEAD-101",
+      "node_type": "VirtualSensor",
+      "key": "head_ratio",
+      "name": "Head ratio vs. OEM curve",
+      "unit": "-",
+      "formula": "H_measured / H_curve(Q) with H_measured = (p_d - p_s) / (rho g)",
+      "lo_lo": 0.8,
+      "lo": 0.9,
+      "hi": 1.1,
+      "hi_hi": null,
+      "note": "< 0.9 => pump develops less head than its curve",
+      "asset_path": "Plant1/Utilities/CoolingWater/P-101/HEAD-101"
+    },
+    {
+      "id": "ALM:HEAD-101-LL",
+      "node_type": "Alarm",
+      "name": "Head ratio vs. OEM curve LOW_LOW",
+      "state": "LOW_LOW",
+      "limit": 0.8,
+      "severity": "HIGH",
+      "message": "Head ratio vs. OEM curve LOW_LOW (< 0.8)"
+    },
+    {
+      "id": "ALM:HEAD-101-L",
+      "node_type": "Alarm",
+      "name": "Head ratio vs. OEM curve LOW",
+      "state": "LOW",
+      "limit": 0.9,
+      "severity": "MEDIUM",
+      "message": "Head ratio vs. OEM curve LOW (< 0.9)"
+    },
+    {
+      "id": "ALM:HEAD-101-H",
+      "node_type": "Alarm",
+      "name": "Head ratio vs. OEM curve HIGH",
+      "state": "HIGH",
+      "limit": 1.1,
+      "severity": "MEDIUM",
+      "message": "Head ratio vs. OEM curve HIGH (> 1.1)"
+    },
+    {
+      "id": "A-STOP-PUMP",
+      "node_type": "MaintenanceAction",
+      "name": "Stop the pump and start the standby unit to prevent further damage",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-PLAN-SHUTDOWN",
+      "node_type": "MaintenanceAction",
+      "name": "Plan a controlled shutdown and switch to the standby pump",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-REDUCE-FLOW",
+      "node_type": "MaintenanceAction",
+      "name": "Throttle the discharge valve to return flow to the Preferred Operating Region (70-120 m3/h)",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-LIMIT-FLOW",
+      "node_type": "MaintenanceAction",
+      "name": "Temporarily reduce flow (throttle discharge) to cut suction-side losses until the cause is removed",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-OPEN-DISCHARGE",
+      "node_type": "MaintenanceAction",
+      "name": "Open the discharge valve / restore the discharge path; verify minimum-flow bypass is open",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-RESTORE-SUCTION",
+      "node_type": "MaintenanceAction",
+      "name": "Restore suction supply (tank level, suction valve) and re-prime before restart",
+      "action_type": "IMMEDIATE"
+    },
+    {
+      "id": "A-NPSH-CHECK",
+      "node_type": "MaintenanceAction",
+      "name": "Recalculate NPSHa vs. NPSH3 at the actual flow and fluid temperature",
+      "action_type": "DIAGNOSTIC"
+    },
+    {
+      "id": "A-VIB-SPECTRUM",
+      "node_type": "MaintenanceAction",
+      "name": "Take an FFT vibration spectrum (1x, 2x, bearing defect frequencies) to confirm the mechanical fault",
+      "action_type": "DIAGNOSTIC"
+    },
+    {
+      "id": "A-PERF-TEST",
+      "node_type": "MaintenanceAction",
+      "name": "Run a performance test and compare measured H-Q points with the OEM curve",
+      "action_type": "DIAGNOSTIC"
+    },
+    {
+      "id": "A-LUBE-CHECK",
+      "node_type": "MaintenanceAction",
+      "name": "Check bearing lubricant level, condition and contamination (oil analysis)",
+      "action_type": "DIAGNOSTIC"
+    },
+    {
+      "id": "A-ELEC-CHECK",
+      "node_type": "MaintenanceAction",
+      "name": "Check supply voltage balance, motor insulation resistance and overload relay settings",
+      "action_type": "DIAGNOSTIC"
+    },
+    {
+      "id": "A-CLEAN-STRAINER",
+      "node_type": "MaintenanceAction",
+      "name": "Clean or replace the suction strainer element",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-RESTORE-LEVEL",
+      "node_type": "MaintenanceAction",
+      "name": "Restore suction tank level; check level control and make-up supply",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-COOL-FLUID",
+      "node_type": "MaintenanceAction",
+      "name": "Restore fluid cooling (check upstream cooler) to lower the vapour pressure",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-OPEN-SUCTION-VALVE",
+      "node_type": "MaintenanceAction",
+      "name": "Fully open the suction isolation valve (never throttle on the suction side)",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-REPRIME",
+      "node_type": "MaintenanceAction",
+      "name": "Vent the casing and re-prime; locate and seal air-ingress points",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-ALIGN",
+      "node_type": "MaintenanceAction",
+      "name": "Laser-align pump and motor shafts to coupling tolerance",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-PIPE-SUPPORT",
+      "node_type": "MaintenanceAction",
+      "name": "Check pipe supports and remove nozzle loads (pipe strain)",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-SOFT-FOOT",
+      "node_type": "MaintenanceAction",
+      "name": "Check and correct soft foot, grout and anchor bolts",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-RELUBRICATE",
+      "node_type": "MaintenanceAction",
+      "name": "Replenish or replace the lubricant with the specified grade",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-REPLACE-BEARING",
+      "node_type": "MaintenanceAction",
+      "name": "Replace the drive-end bearing; inspect shaft and housing fits",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-BALANCE-IMPELLER",
+      "node_type": "MaintenanceAction",
+      "name": "Clean and dynamically balance the impeller (ISO 21940-11 grade G6.3)",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-REPLACE-IMPELLER",
+      "node_type": "MaintenanceAction",
+      "name": "Inspect and repair or replace the impeller",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-RESTORE-CLEARANCE",
+      "node_type": "MaintenanceAction",
+      "name": "Replace wear rings to restore the design running clearance",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-REPLACE-SEAL",
+      "node_type": "MaintenanceAction",
+      "name": "Replace seal faces and elastomers; verify the seal flush plan",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-REPAIR-CHECK-VALVE",
+      "node_type": "MaintenanceAction",
+      "name": "Inspect and repair the discharge check valve",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-CLEAR-DISCHARGE",
+      "node_type": "MaintenanceAction",
+      "name": "Inspect and clear the discharge line / downstream blockage",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-FREE-ROTOR",
+      "node_type": "MaintenanceAction",
+      "name": "With the pump isolated, check the rotor turns freely; inspect for rubbing",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "A-CHECK-FLUID",
+      "node_type": "MaintenanceAction",
+      "name": "Verify fluid density and viscosity against the pump datasheet",
+      "action_type": "CORRECTIVE"
+    },
+    {
+      "id": "FM-CAVITATION",
+      "node_type": "FailureMode",
+      "name": "Cavitation",
+      "severity": "HIGH",
+      "description": "Vapour bubbles form at the impeller eye and collapse inside the impeller.",
+      "physics": "When the absolute pressure at the impeller eye approaches the fluid's vapour pressure (NPSHa approaching NPSH3), vapour bubbles form and then collapse violently in higher-pressure regions. The implosions cause broadband vibration and noise, pit the vanes, and vapour blocking the passages breaks down the developed head and flow."
+    },
+    {
+      "id": "FM-BEARING",
+      "node_type": "FailureMode",
+      "name": "Drive-end bearing degradation",
+      "severity": "HIGH",
+      "description": "Rolling-element bearing distress (lubrication failure, contamination or fatigue).",
+      "physics": "Loss of the lubricant film, contamination or fatigue spalling increases rolling friction, raising bearing temperature; defects on races or rolling elements generate impacts that raise radial vibration. Higher temperature degrades the lubricant further, a self-accelerating loop."
+    },
+    {
+      "id": "FM-MISALIGNMENT",
+      "node_type": "FailureMode",
+      "name": "Pump-motor shaft misalignment",
+      "severity": "MEDIUM",
+      "description": "Angular or parallel offset between pump and motor shafts.",
+      "physics": "The coupling is forced to flex every revolution, producing cyclic reaction forces that are characteristically strong in the axial direction (1x and 2x running speed) and add load to the bearings, which raises bearing temperature."
+    },
+    {
+      "id": "FM-IMBALANCE",
+      "node_type": "FailureMode",
+      "name": "Rotor / impeller imbalance",
+      "severity": "MEDIUM",
+      "description": "Mass centre of the rotor offset from its axis of rotation.",
+      "physics": "The offset mass creates a centrifugal force F = m*e*omega^2 rotating at 1x running speed, giving predominantly radial vibration. Hydraulic performance (head, NPSH) is unaffected, which distinguishes imbalance from cavitation: while the NPSH margin is low, vibration cannot be attributed to imbalance."
+    },
+    {
+      "id": "FM-SEAL-LEAK",
+      "node_type": "FailureMode",
+      "name": "Mechanical seal leakage",
+      "severity": "HIGH",
+      "description": "Process fluid escaping across the mechanical seal faces.",
+      "physics": "The seal relies on a thin fluid film between rotating and stationary faces. Face wear, thermal distortion or heat-checking (e.g. after dry running) and elastomer degradation open the gap; leakage trips the leak detector and frictional heat raises the seal-chamber temperature."
+    },
+    {
+      "id": "FM-DRY-RUN",
+      "node_type": "FailureMode",
+      "name": "Dry running (loss of suction)",
+      "severity": "CRITICAL",
+      "description": "The pump runs without liquid in the casing.",
+      "physics": "Without liquid the impeller cannot develop head: discharge pressure collapses toward suction pressure and the head ratio falls to near zero. The motor only supplies mechanical losses, so current drops well below normal. The seal faces lose their lubricating and cooling film and overheat within minutes."
+    },
+    {
+      "id": "FM-DEADHEAD",
+      "node_type": "FailureMode",
+      "name": "Deadheading (blocked discharge)",
+      "severity": "CRITICAL",
+      "description": "The pump runs against a closed or blocked discharge.",
+      "physics": "The pump operates at shut-off: pressure rises to the shut-off head while flow is ~zero. For a radial centrifugal pump absorbed power is minimum at shut-off, so motor current FALLS (it does not rise). All absorbed power heats the trapped liquid, so seal-chamber temperature climbs and the liquid can eventually flash to vapour."
+    },
+    {
+      "id": "FM-IMPELLER-WEAR",
+      "node_type": "FailureMode",
+      "name": "Hydraulic degradation (impeller / wear-ring wear)",
+      "severity": "MEDIUM",
+      "description": "Pump develops less head than its OEM curve at the same flow.",
+      "physics": "Vane erosion and opened wear-ring clearances increase internal recirculation from discharge back to suction, so the pump develops less head than its curve at the measured flow (head ratio < 1). NPSH margin stays healthy and the motor stays loaded, which separates wear from cavitation and from loss of suction."
+    },
+    {
+      "id": "FM-OVERLOAD",
+      "node_type": "FailureMode",
+      "name": "Motor overload",
+      "severity": "HIGH",
+      "description": "Motor draws more than its full-load current.",
+      "physics": "Motor current tracks shaft load. For a radial centrifugal pump absorbed power rises with flow, so running far right on the curve (runout) overloads the motor; mechanical drag, a denser fluid or a low/unbalanced supply voltage do the same. The extra I^2R losses raise the winding temperature toward the insulation limit."
+    },
+    {
+      "id": "SYM:npsh_margin:LOW",
+      "node_type": "Symptom",
+      "key": "npsh_margin",
+      "state": "LOW",
+      "name": "NPSH margin ratio LOW"
+    },
+    {
+      "id": "SYM:suction_pressure:LOW",
+      "node_type": "Symptom",
+      "key": "suction_pressure",
+      "state": "LOW",
+      "name": "Suction pressure LOW"
+    },
+    {
+      "id": "SYM:radial_vibration:HIGH",
+      "node_type": "Symptom",
+      "key": "radial_vibration",
+      "state": "HIGH",
+      "name": "DE bearing radial vibration HIGH"
+    },
+    {
+      "id": "SYM:head_ratio:LOW",
+      "node_type": "Symptom",
+      "key": "head_ratio",
+      "state": "LOW",
+      "name": "Head ratio vs. OEM curve LOW"
+    },
+    {
+      "id": "SYM:discharge_pressure:LOW",
+      "node_type": "Symptom",
+      "key": "discharge_pressure",
+      "state": "LOW",
+      "name": "Discharge pressure LOW"
+    },
+    {
+      "id": "SYM:flow:LOW",
+      "node_type": "Symptom",
+      "key": "flow",
+      "state": "LOW",
+      "name": "Discharge flow LOW"
+    },
+    {
+      "id": "SYM:bearing_temperature:HIGH",
+      "node_type": "Symptom",
+      "key": "bearing_temperature",
+      "state": "HIGH",
+      "name": "DE bearing temperature HIGH"
+    },
+    {
+      "id": "SYM:axial_vibration:HIGH",
+      "node_type": "Symptom",
+      "key": "axial_vibration",
+      "state": "HIGH",
+      "name": "DE bearing axial vibration HIGH"
+    },
+    {
+      "id": "SYM:npsh_margin:NORMAL",
+      "node_type": "Symptom",
+      "key": "npsh_margin",
+      "state": "NORMAL",
+      "name": "NPSH margin ratio NORMAL"
+    },
+    {
+      "id": "SYM:axial_vibration:NORMAL",
+      "node_type": "Symptom",
+      "key": "axial_vibration",
+      "state": "NORMAL",
+      "name": "DE bearing axial vibration NORMAL"
+    },
+    {
+      "id": "SYM:bearing_temperature:NORMAL",
+      "node_type": "Symptom",
+      "key": "bearing_temperature",
+      "state": "NORMAL",
+      "name": "DE bearing temperature NORMAL"
+    },
+    {
+      "id": "SYM:head_ratio:NORMAL",
+      "node_type": "Symptom",
+      "key": "head_ratio",
+      "state": "NORMAL",
+      "name": "Head ratio vs. OEM curve NORMAL"
+    },
+    {
+      "id": "SYM:seal_leak:HIGH",
+      "node_type": "Symptom",
+      "key": "seal_leak",
+      "state": "HIGH",
+      "name": "Seal leak detector HIGH"
+    },
+    {
+      "id": "SYM:seal_chamber_temperature:HIGH",
+      "node_type": "Symptom",
+      "key": "seal_chamber_temperature",
+      "state": "HIGH",
+      "name": "Seal chamber temperature HIGH"
+    },
+    {
+      "id": "SYM:flow:LOW_LOW",
+      "node_type": "Symptom",
+      "key": "flow",
+      "state": "LOW_LOW",
+      "name": "Discharge flow LOW_LOW"
+    },
+    {
+      "id": "SYM:motor_current:LOW",
+      "node_type": "Symptom",
+      "key": "motor_current",
+      "state": "LOW",
+      "name": "Motor current LOW"
+    },
+    {
+      "id": "SYM:discharge_pressure:HIGH",
+      "node_type": "Symptom",
+      "key": "discharge_pressure",
+      "state": "HIGH",
+      "name": "Discharge pressure HIGH"
+    },
+    {
+      "id": "SYM:motor_current:NORMAL",
+      "node_type": "Symptom",
+      "key": "motor_current",
+      "state": "NORMAL",
+      "name": "Motor current NORMAL"
+    },
+    {
+      "id": "SYM:motor_current:HIGH",
+      "node_type": "Symptom",
+      "key": "motor_current",
+      "state": "HIGH",
+      "name": "Motor current HIGH"
+    },
+    {
+      "id": "SYM:motor_winding_temperature:HIGH",
+      "node_type": "Symptom",
+      "key": "motor_winding_temperature",
+      "state": "HIGH",
+      "name": "Motor winding temperature HIGH"
+    },
+    {
+      "id": "RC-STRAINER-CLOGGED",
+      "node_type": "RootCause",
+      "name": "Clogged suction strainer",
+      "description": "Debris on the strainer adds suction-side pressure loss, lowering NPSHa.",
+      "prior": 0.7
+    },
+    {
+      "id": "SYM:strainer_dp:HIGH",
+      "node_type": "Symptom",
+      "key": "strainer_dp",
+      "state": "HIGH",
+      "name": "Suction strainer differential pressure HIGH"
+    },
+    {
+      "id": "RC-LOW-TANK-LEVEL",
+      "node_type": "RootCause",
+      "name": "Low suction tank level",
+      "description": "Reduced static head (and possible vortexing) lowers NPSHa.",
+      "prior": 0.6
+    },
+    {
+      "id": "SYM:suction_tank_level:LOW",
+      "node_type": "Symptom",
+      "key": "suction_tank_level",
+      "state": "LOW",
+      "name": "Suction tank level LOW"
+    },
+    {
+      "id": "RC-HIGH-FLUID-TEMP",
+      "node_type": "RootCause",
+      "name": "High fluid temperature",
+      "description": "Vapour pressure rises steeply with temperature, consuming the NPSH margin.",
+      "prior": 0.4
+    },
+    {
+      "id": "SYM:fluid_temperature:HIGH",
+      "node_type": "Symptom",
+      "key": "fluid_temperature",
+      "state": "HIGH",
+      "name": "Pumped fluid temperature HIGH"
+    },
+    {
+      "id": "RC-SUCTION-VALVE-THROTTLED",
+      "node_type": "RootCause",
+      "name": "Partially closed suction valve",
+      "description": "A throttled suction valve adds pressure loss after the strainer. Confirmed by elimination: low suction pressure with normal strainer DP, tank level and fluid temperature.",
+      "prior": 0.3
+    },
+    {
+      "id": "SYM:strainer_dp:NORMAL",
+      "node_type": "Symptom",
+      "key": "strainer_dp",
+      "state": "NORMAL",
+      "name": "Suction strainer differential pressure NORMAL"
+    },
+    {
+      "id": "SYM:suction_tank_level:NORMAL",
+      "node_type": "Symptom",
+      "key": "suction_tank_level",
+      "state": "NORMAL",
+      "name": "Suction tank level NORMAL"
+    },
+    {
+      "id": "SYM:fluid_temperature:NORMAL",
+      "node_type": "Symptom",
+      "key": "fluid_temperature",
+      "state": "NORMAL",
+      "name": "Pumped fluid temperature NORMAL"
+    },
+    {
+      "id": "RC-RUNOUT",
+      "node_type": "RootCause",
+      "name": "Runout operation (low system resistance)",
+      "description": "Flow far beyond rated raises NPSH3, suction losses and absorbed power.",
+      "prior": 0.5
+    },
+    {
+      "id": "SYM:flow:HIGH",
+      "node_type": "Symptom",
+      "key": "flow",
+      "state": "HIGH",
+      "name": "Discharge flow HIGH"
+    },
+    {
+      "id": "RC-EMPTY-TANK",
+      "node_type": "RootCause",
+      "name": "Empty suction tank",
+      "description": "No liquid reaches the pump suction.",
+      "prior": 0.6
+    },
+    {
+      "id": "SYM:suction_tank_level:LOW_LOW",
+      "node_type": "Symptom",
+      "key": "suction_tank_level",
+      "state": "LOW_LOW",
+      "name": "Suction tank level LOW_LOW"
+    },
+    {
+      "id": "RC-SUCTION-VALVE-CLOSED",
+      "node_type": "RootCause",
+      "name": "Closed suction valve",
+      "description": "Suction isolation valve left closed; pump pulls a vacuum on its own casing.",
+      "prior": 0.4
+    },
+    {
+      "id": "RC-LOSS-OF-PRIME",
+      "node_type": "RootCause",
+      "name": "Air ingress / loss of prime",
+      "description": "Air leaking into the suction line or casing displaces the liquid.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-LUBRICATION",
+      "node_type": "RootCause",
+      "name": "Insufficient or degraded lubrication",
+      "description": "Low oil level, wrong grade or oxidised lubricant.",
+      "prior": 0.7
+    },
+    {
+      "id": "RC-LUBE-CONTAMINATION",
+      "node_type": "RootCause",
+      "name": "Lubricant contamination",
+      "description": "Water or particles in the lubricant damage raceways.",
+      "prior": 0.5
+    },
+    {
+      "id": "RC-BEARING-FATIGUE",
+      "node_type": "RootCause",
+      "name": "Bearing fatigue (end of L10 life)",
+      "description": "Sub-surface fatigue spalling after the rated number of cycles.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-INSTALL-MISALIGN",
+      "node_type": "RootCause",
+      "name": "Improper alignment after installation / overhaul",
+      "description": "Shafts not aligned to tolerance when the pump was last installed.",
+      "prior": 0.6
+    },
+    {
+      "id": "RC-PIPE-STRAIN",
+      "node_type": "RootCause",
+      "name": "Pipe strain on pump nozzles",
+      "description": "Piping forces distort the casing and move the pump shaft.",
+      "prior": 0.4
+    },
+    {
+      "id": "RC-SOFT-FOOT",
+      "node_type": "RootCause",
+      "name": "Soft foot / foundation settlement",
+      "description": "Uneven support lets the machine move when bolts are tightened or under load.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-IMPELLER-FOULING",
+      "node_type": "RootCause",
+      "name": "Uneven impeller fouling",
+      "description": "Non-uniform deposits shift the impeller's mass centre.",
+      "prior": 0.5
+    },
+    {
+      "id": "RC-IMPELLER-DAMAGE",
+      "node_type": "RootCause",
+      "name": "Impeller damage (foreign object / broken vane)",
+      "description": "Missing or damaged vane material unbalances the rotor and reduces head.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-WEAR-RING-WEAR",
+      "node_type": "RootCause",
+      "name": "Excessive wear-ring clearance",
+      "description": "Abrasive wear opens the running clearance and increases internal recirculation.",
+      "prior": 0.6
+    },
+    {
+      "id": "RC-SEAL-FACE-WEAR",
+      "node_type": "RootCause",
+      "name": "Seal face wear (end of life)",
+      "description": "Normal wear of the carbon / silicon-carbide faces.",
+      "prior": 0.6
+    },
+    {
+      "id": "RC-ELASTOMER-DEGRADATION",
+      "node_type": "RootCause",
+      "name": "Seal elastomer degradation",
+      "description": "O-rings harden or swell from temperature or chemical attack.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-DISCHARGE-VALVE-CLOSED",
+      "node_type": "RootCause",
+      "name": "Closed discharge valve",
+      "description": "Discharge isolation valve closed or not opened after start-up.",
+      "prior": 0.6
+    },
+    {
+      "id": "RC-CHECK-VALVE-STUCK",
+      "node_type": "RootCause",
+      "name": "Check valve stuck closed",
+      "description": "The non-return valve disc is jammed shut.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-DISCHARGE-BLOCKED",
+      "node_type": "RootCause",
+      "name": "Downstream line blockage",
+      "description": "Debris or a closed valve further downstream blocks the discharge line.",
+      "prior": 0.2
+    },
+    {
+      "id": "RC-MECH-BINDING",
+      "node_type": "RootCause",
+      "name": "Mechanical binding / rubbing",
+      "description": "Rotor rubbing on stationary parts adds friction load.",
+      "prior": 0.3
+    },
+    {
+      "id": "RC-SUPPLY-VOLTAGE",
+      "node_type": "RootCause",
+      "name": "Low or unbalanced supply voltage",
+      "description": "For the same load, lower or unbalanced voltage increases motor current.",
+      "prior": 0.4
+    },
+    {
+      "id": "RC-DENSE-FLUID",
+      "node_type": "RootCause",
+      "name": "Fluid denser or more viscous than design",
+      "description": "Absorbed power is proportional to density (and rises with viscosity).",
+      "prior": 0.1
+    }
+  ],
+  "edges": [
+    {
+      "source": "Plant1",
+      "target": "Utilities",
+      "relation": "contains"
+    },
+    {
+      "source": "Utilities",
+      "target": "CoolingWater",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "TK-100",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "STR-100",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "HV-101",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "P-101",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "NRV-102",
+      "relation": "contains"
+    },
+    {
+      "source": "CoolingWater",
+      "target": "HV-102",
+      "relation": "contains"
+    },
+    {
+      "source": "TK-100",
+      "target": "STR-100",
+      "relation": "feeds"
+    },
+    {
+      "source": "STR-100",
+      "target": "HV-101",
+      "relation": "feeds"
+    },
+    {
+      "source": "HV-101",
+      "target": "P-101",
+      "relation": "feeds"
+    },
+    {
+      "source": "P-101",
+      "target": "NRV-102",
+      "relation": "feeds"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.CASING",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.IMPELLER",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.WEAR-RINGS",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.SHAFT",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.BRG-DE",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.BRG-NDE",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.SEAL",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.COUPLING",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.MOTOR",
+      "relation": "has_component"
+    },
+    {
+      "source": "P-101",
+      "target": "P-101.BASEPLATE",
+      "relation": "has_component"
+    },
+    {
+      "source": "NRV-102",
+      "target": "HV-102",
+      "relation": "feeds"
+    },
+    {
+      "source": "PT-101",
+      "target": "P-101.CASING",
+      "relation": "monitors"
+    },
+    {
+      "source": "PT-101",
+      "target": "ALM:PT-101-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-101",
+      "target": "ALM:PT-101-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-101",
+      "target": "ALM:PT-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-102",
+      "target": "P-101.CASING",
+      "relation": "monitors"
+    },
+    {
+      "source": "PT-102",
+      "target": "ALM:PT-102-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-102",
+      "target": "ALM:PT-102-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-102",
+      "target": "ALM:PT-102-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "PT-102",
+      "target": "ALM:PT-102-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "FT-101",
+      "target": "P-101",
+      "relation": "monitors"
+    },
+    {
+      "source": "FT-101",
+      "target": "ALM:FT-101-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "FT-101",
+      "target": "ALM:FT-101-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "FT-101",
+      "target": "ALM:FT-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "FT-101",
+      "target": "ALM:FT-101-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "VT-101",
+      "target": "P-101.BRG-DE",
+      "relation": "monitors"
+    },
+    {
+      "source": "VT-101",
+      "target": "ALM:VT-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "VT-101",
+      "target": "ALM:VT-101-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "VT-102",
+      "target": "P-101.BRG-DE",
+      "relation": "monitors"
+    },
+    {
+      "source": "VT-102",
+      "target": "ALM:VT-102-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "VT-102",
+      "target": "ALM:VT-102-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-101",
+      "target": "P-101.BRG-DE",
+      "relation": "monitors"
+    },
+    {
+      "source": "TT-101",
+      "target": "ALM:TT-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-101",
+      "target": "ALM:TT-101-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-102",
+      "target": "P-101",
+      "relation": "monitors"
+    },
+    {
+      "source": "TT-102",
+      "target": "ALM:TT-102-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-102",
+      "target": "ALM:TT-102-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-103",
+      "target": "P-101.MOTOR",
+      "relation": "monitors"
+    },
+    {
+      "source": "TT-103",
+      "target": "ALM:TT-103-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-103",
+      "target": "ALM:TT-103-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-104",
+      "target": "P-101.SEAL",
+      "relation": "monitors"
+    },
+    {
+      "source": "TT-104",
+      "target": "ALM:TT-104-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "TT-104",
+      "target": "ALM:TT-104-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "IT-101",
+      "target": "P-101.MOTOR",
+      "relation": "monitors"
+    },
+    {
+      "source": "IT-101",
+      "target": "ALM:IT-101-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "IT-101",
+      "target": "ALM:IT-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "IT-101",
+      "target": "ALM:IT-101-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "LS-101",
+      "target": "P-101.SEAL",
+      "relation": "monitors"
+    },
+    {
+      "source": "LS-101",
+      "target": "ALM:LS-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "LT-100",
+      "target": "TK-100",
+      "relation": "monitors"
+    },
+    {
+      "source": "LT-100",
+      "target": "ALM:LT-100-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "LT-100",
+      "target": "ALM:LT-100-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "LT-100",
+      "target": "ALM:LT-100-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "PDT-100",
+      "target": "STR-100",
+      "relation": "monitors"
+    },
+    {
+      "source": "PDT-100",
+      "target": "ALM:PDT-100-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "PDT-100",
+      "target": "ALM:PDT-100-HH",
+      "relation": "triggers"
+    },
+    {
+      "source": "NPSH-101",
+      "target": "PT-101",
+      "relation": "derived_from"
+    },
+    {
+      "source": "NPSH-101",
+      "target": "TT-102",
+      "relation": "derived_from"
+    },
+    {
+      "source": "NPSH-101",
+      "target": "FT-101",
+      "relation": "derived_from"
+    },
+    {
+      "source": "NPSH-101",
+      "target": "ALM:NPSH-101-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "NPSH-101",
+      "target": "ALM:NPSH-101-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "PT-101",
+      "relation": "derived_from"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "PT-102",
+      "relation": "derived_from"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "TT-102",
+      "relation": "derived_from"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "FT-101",
+      "relation": "derived_from"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "ALM:HEAD-101-LL",
+      "relation": "triggers"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "ALM:HEAD-101-L",
+      "relation": "triggers"
+    },
+    {
+      "source": "HEAD-101",
+      "target": "ALM:HEAD-101-H",
+      "relation": "triggers"
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "P-101.IMPELLER",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:npsh_margin:LOW",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:suction_pressure:LOW",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:radial_vibration:HIGH",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:head_ratio:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:discharge_pressure:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "SYM:flow:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "FM-IMPELLER-WEAR",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "FM-SEAL-LEAK",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "A-LIMIT-FLOW",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-CAVITATION",
+      "target": "A-NPSH-CHECK",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "P-101.BRG-DE",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "SYM:bearing_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "SYM:radial_vibration:HIGH",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "A-VIB-SPECTRUM",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "A-LUBE-CHECK",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-BEARING",
+      "target": "A-PLAN-SHUTDOWN",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "P-101.COUPLING",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "SYM:axial_vibration:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "SYM:radial_vibration:HIGH",
+      "relation": "manifests_as",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "SYM:bearing_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "FM-BEARING",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "FM-SEAL-LEAK",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-MISALIGNMENT",
+      "target": "A-VIB-SPECTRUM",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "P-101.IMPELLER",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "SYM:radial_vibration:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "SYM:npsh_margin:NORMAL",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "SYM:axial_vibration:NORMAL",
+      "relation": "manifests_as",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "SYM:bearing_temperature:NORMAL",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "SYM:head_ratio:NORMAL",
+      "relation": "manifests_as",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "FM-BEARING",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-IMBALANCE",
+      "target": "A-VIB-SPECTRUM",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-SEAL-LEAK",
+      "target": "P-101.SEAL",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-SEAL-LEAK",
+      "target": "SYM:seal_leak:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-SEAL-LEAK",
+      "target": "SYM:seal_chamber_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-SEAL-LEAK",
+      "target": "A-PLAN-SHUTDOWN",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "P-101",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "SYM:flow:LOW_LOW",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "SYM:discharge_pressure:LOW",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "SYM:motor_current:LOW",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "SYM:head_ratio:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "SYM:seal_chamber_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "FM-SEAL-LEAK",
+      "relation": "propagates_to"
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "A-STOP-PUMP",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-DRY-RUN",
+      "target": "A-RESTORE-SUCTION",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "P-101",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "SYM:flow:LOW_LOW",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "SYM:discharge_pressure:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "SYM:motor_current:LOW",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "SYM:seal_chamber_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "SYM:head_ratio:NORMAL",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "A-OPEN-DISCHARGE",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-DEADHEAD",
+      "target": "A-STOP-PUMP",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "P-101.IMPELLER",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "SYM:head_ratio:LOW",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "SYM:npsh_margin:NORMAL",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "SYM:motor_current:NORMAL",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "SYM:discharge_pressure:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "SYM:flow:LOW",
+      "relation": "manifests_as",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-IMPELLER-WEAR",
+      "target": "A-PERF-TEST",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-OVERLOAD",
+      "target": "P-101.MOTOR",
+      "relation": "occurs_in"
+    },
+    {
+      "source": "FM-OVERLOAD",
+      "target": "SYM:motor_current:HIGH",
+      "relation": "manifests_as",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "FM-OVERLOAD",
+      "target": "SYM:motor_winding_temperature:HIGH",
+      "relation": "manifests_as",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "FM-OVERLOAD",
+      "target": "A-REDUCE-FLOW",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "FM-OVERLOAD",
+      "target": "A-ELEC-CHECK",
+      "relation": "mitigated_by"
+    },
+    {
+      "source": "SYM:npsh_margin:LOW",
+      "target": "NPSH-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:suction_pressure:LOW",
+      "target": "PT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:radial_vibration:HIGH",
+      "target": "VT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:head_ratio:LOW",
+      "target": "HEAD-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:discharge_pressure:LOW",
+      "target": "PT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:flow:LOW",
+      "target": "FT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:bearing_temperature:HIGH",
+      "target": "TT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:axial_vibration:HIGH",
+      "target": "VT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:npsh_margin:NORMAL",
+      "target": "NPSH-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:axial_vibration:NORMAL",
+      "target": "VT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:bearing_temperature:NORMAL",
+      "target": "TT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:head_ratio:NORMAL",
+      "target": "HEAD-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:seal_leak:HIGH",
+      "target": "LS-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:seal_chamber_temperature:HIGH",
+      "target": "TT-104",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:flow:LOW_LOW",
+      "target": "FT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:motor_current:LOW",
+      "target": "IT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:discharge_pressure:HIGH",
+      "target": "PT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:motor_current:NORMAL",
+      "target": "IT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:motor_current:HIGH",
+      "target": "IT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:motor_winding_temperature:HIGH",
+      "target": "TT-103",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-STRAINER-CLOGGED",
+      "target": "FM-CAVITATION",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-STRAINER-CLOGGED",
+      "target": "FM-DRY-RUN",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-STRAINER-CLOGGED",
+      "target": "SYM:strainer_dp:HIGH",
+      "relation": "evidenced_by",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-STRAINER-CLOGGED",
+      "target": "STR-100",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-STRAINER-CLOGGED",
+      "target": "A-CLEAN-STRAINER",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:strainer_dp:HIGH",
+      "target": "PDT-100",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-LOW-TANK-LEVEL",
+      "target": "FM-CAVITATION",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-LOW-TANK-LEVEL",
+      "target": "SYM:suction_tank_level:LOW",
+      "relation": "evidenced_by",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-LOW-TANK-LEVEL",
+      "target": "TK-100",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-LOW-TANK-LEVEL",
+      "target": "A-RESTORE-LEVEL",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:suction_tank_level:LOW",
+      "target": "LT-100",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-HIGH-FLUID-TEMP",
+      "target": "FM-CAVITATION",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-HIGH-FLUID-TEMP",
+      "target": "SYM:fluid_temperature:HIGH",
+      "relation": "evidenced_by",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-HIGH-FLUID-TEMP",
+      "target": "P-101",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-HIGH-FLUID-TEMP",
+      "target": "A-COOL-FLUID",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:fluid_temperature:HIGH",
+      "target": "TT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "FM-CAVITATION",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "SYM:suction_pressure:LOW",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "SYM:strainer_dp:NORMAL",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "SYM:suction_tank_level:NORMAL",
+      "relation": "evidenced_by",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "SYM:fluid_temperature:NORMAL",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "HV-101",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-THROTTLED",
+      "target": "A-OPEN-SUCTION-VALVE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:strainer_dp:NORMAL",
+      "target": "PDT-100",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:suction_tank_level:NORMAL",
+      "target": "LT-100",
+      "relation": "observed_by"
+    },
+    {
+      "source": "SYM:fluid_temperature:NORMAL",
+      "target": "TT-102",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "FM-CAVITATION",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "FM-OVERLOAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "SYM:flow:HIGH",
+      "relation": "evidenced_by",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "SYM:discharge_pressure:LOW",
+      "relation": "evidenced_by",
+      "weight": 1,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "P-101",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-RUNOUT",
+      "target": "A-REDUCE-FLOW",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:flow:HIGH",
+      "target": "FT-101",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-EMPTY-TANK",
+      "target": "FM-DRY-RUN",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-EMPTY-TANK",
+      "target": "SYM:suction_tank_level:LOW_LOW",
+      "relation": "evidenced_by",
+      "weight": 3,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-EMPTY-TANK",
+      "target": "TK-100",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-EMPTY-TANK",
+      "target": "A-RESTORE-LEVEL",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-EMPTY-TANK",
+      "target": "A-REPRIME",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "SYM:suction_tank_level:LOW_LOW",
+      "target": "LT-100",
+      "relation": "observed_by"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-CLOSED",
+      "target": "FM-DRY-RUN",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-CLOSED",
+      "target": "SYM:suction_pressure:LOW",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": true
+    },
+    {
+      "source": "RC-SUCTION-VALVE-CLOSED",
+      "target": "SYM:suction_tank_level:NORMAL",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-SUCTION-VALVE-CLOSED",
+      "target": "HV-101",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-SUCTION-VALVE-CLOSED",
+      "target": "A-OPEN-SUCTION-VALVE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-LOSS-OF-PRIME",
+      "target": "FM-DRY-RUN",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-LOSS-OF-PRIME",
+      "target": "P-101.CASING",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-LOSS-OF-PRIME",
+      "target": "A-REPRIME",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-LUBRICATION",
+      "target": "FM-BEARING",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-LUBRICATION",
+      "target": "P-101.BRG-DE",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-LUBRICATION",
+      "target": "A-RELUBRICATE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-LUBE-CONTAMINATION",
+      "target": "FM-BEARING",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-LUBE-CONTAMINATION",
+      "target": "P-101.BRG-DE",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-LUBE-CONTAMINATION",
+      "target": "A-RELUBRICATE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-LUBE-CONTAMINATION",
+      "target": "A-REPLACE-BEARING",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-BEARING-FATIGUE",
+      "target": "FM-BEARING",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-BEARING-FATIGUE",
+      "target": "P-101.BRG-DE",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-BEARING-FATIGUE",
+      "target": "A-REPLACE-BEARING",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-INSTALL-MISALIGN",
+      "target": "FM-MISALIGNMENT",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-INSTALL-MISALIGN",
+      "target": "P-101.COUPLING",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-INSTALL-MISALIGN",
+      "target": "A-ALIGN",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-PIPE-STRAIN",
+      "target": "FM-MISALIGNMENT",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-PIPE-STRAIN",
+      "target": "P-101.CASING",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-PIPE-STRAIN",
+      "target": "A-PIPE-SUPPORT",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-PIPE-STRAIN",
+      "target": "A-ALIGN",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-SOFT-FOOT",
+      "target": "FM-MISALIGNMENT",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-SOFT-FOOT",
+      "target": "P-101.BASEPLATE",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-SOFT-FOOT",
+      "target": "A-SOFT-FOOT",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-SOFT-FOOT",
+      "target": "A-ALIGN",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-IMPELLER-FOULING",
+      "target": "FM-IMBALANCE",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-IMPELLER-FOULING",
+      "target": "P-101.IMPELLER",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-IMPELLER-FOULING",
+      "target": "A-BALANCE-IMPELLER",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-IMPELLER-DAMAGE",
+      "target": "FM-IMBALANCE",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-IMPELLER-DAMAGE",
+      "target": "FM-IMPELLER-WEAR",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-IMPELLER-DAMAGE",
+      "target": "P-101.IMPELLER",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-IMPELLER-DAMAGE",
+      "target": "A-REPLACE-IMPELLER",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-WEAR-RING-WEAR",
+      "target": "FM-IMPELLER-WEAR",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-WEAR-RING-WEAR",
+      "target": "P-101.WEAR-RINGS",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-WEAR-RING-WEAR",
+      "target": "A-RESTORE-CLEARANCE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-SEAL-FACE-WEAR",
+      "target": "FM-SEAL-LEAK",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-SEAL-FACE-WEAR",
+      "target": "P-101.SEAL",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-SEAL-FACE-WEAR",
+      "target": "A-REPLACE-SEAL",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-ELASTOMER-DEGRADATION",
+      "target": "FM-SEAL-LEAK",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-ELASTOMER-DEGRADATION",
+      "target": "SYM:fluid_temperature:HIGH",
+      "relation": "evidenced_by",
+      "weight": 2,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-ELASTOMER-DEGRADATION",
+      "target": "P-101.SEAL",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-ELASTOMER-DEGRADATION",
+      "target": "A-REPLACE-SEAL",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-DISCHARGE-VALVE-CLOSED",
+      "target": "FM-DEADHEAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-DISCHARGE-VALVE-CLOSED",
+      "target": "HV-102",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-DISCHARGE-VALVE-CLOSED",
+      "target": "A-OPEN-DISCHARGE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-CHECK-VALVE-STUCK",
+      "target": "FM-DEADHEAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-CHECK-VALVE-STUCK",
+      "target": "NRV-102",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-CHECK-VALVE-STUCK",
+      "target": "A-REPAIR-CHECK-VALVE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-DISCHARGE-BLOCKED",
+      "target": "FM-DEADHEAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-DISCHARGE-BLOCKED",
+      "target": "HV-102",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-DISCHARGE-BLOCKED",
+      "target": "A-CLEAR-DISCHARGE",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-MECH-BINDING",
+      "target": "FM-OVERLOAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-MECH-BINDING",
+      "target": "SYM:radial_vibration:HIGH",
+      "relation": "evidenced_by",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-MECH-BINDING",
+      "target": "SYM:bearing_temperature:HIGH",
+      "relation": "evidenced_by",
+      "weight": 1.5,
+      "key_symptom": false
+    },
+    {
+      "source": "RC-MECH-BINDING",
+      "target": "P-101.SHAFT",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-MECH-BINDING",
+      "target": "A-FREE-ROTOR",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-SUPPLY-VOLTAGE",
+      "target": "FM-OVERLOAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-SUPPLY-VOLTAGE",
+      "target": "P-101.MOTOR",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-SUPPLY-VOLTAGE",
+      "target": "A-ELEC-CHECK",
+      "relation": "remedied_by"
+    },
+    {
+      "source": "RC-DENSE-FLUID",
+      "target": "FM-OVERLOAD",
+      "relation": "causes"
+    },
+    {
+      "source": "RC-DENSE-FLUID",
+      "target": "P-101",
+      "relation": "located_in"
+    },
+    {
+      "source": "RC-DENSE-FLUID",
+      "target": "A-CHECK-FLUID",
+      "relation": "remedied_by"
+    }
+  ]
+}

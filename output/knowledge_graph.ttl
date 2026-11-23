@@ -1,0 +1,1312 @@
+@prefix kl: <http://example.org/digitwin/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ---- Ontology (TBox) ----
+kl:FunctionalLocation a owl:Class .
+kl:Equipment a owl:Class .
+kl:Component a owl:Class .
+kl:Sensor a owl:Class .
+kl:VirtualSensor a owl:Class .
+kl:Alarm a owl:Class .
+kl:Symptom a owl:Class .
+kl:FailureMode a owl:Class .
+kl:RootCause a owl:Class .
+kl:MaintenanceAction a owl:Class .
+kl:contains a owl:ObjectProperty ; rdfs:domain kl:FunctionalLocation .
+kl:has_component a owl:ObjectProperty ; rdfs:domain kl:Equipment ; rdfs:range kl:Component .
+kl:feeds a owl:ObjectProperty ; rdfs:domain kl:Equipment ; rdfs:range kl:Equipment .
+kl:monitors a owl:ObjectProperty ; rdfs:domain kl:Sensor .
+kl:derived_from a owl:ObjectProperty ; rdfs:domain kl:VirtualSensor ; rdfs:range kl:Sensor .
+kl:triggers a owl:ObjectProperty ; rdfs:range kl:Alarm .
+kl:observed_by a owl:ObjectProperty ; rdfs:domain kl:Symptom .
+kl:manifests_as a owl:ObjectProperty ; rdfs:domain kl:FailureMode ; rdfs:range kl:Symptom .
+kl:occurs_in a owl:ObjectProperty ; rdfs:domain kl:FailureMode .
+kl:propagates_to a owl:ObjectProperty ; rdfs:domain kl:FailureMode ; rdfs:range kl:FailureMode .
+kl:causes a owl:ObjectProperty ; rdfs:domain kl:RootCause ; rdfs:range kl:FailureMode .
+kl:evidenced_by a owl:ObjectProperty ; rdfs:domain kl:RootCause ; rdfs:range kl:Symptom .
+kl:located_in a owl:ObjectProperty ; rdfs:domain kl:RootCause .
+kl:mitigated_by a owl:ObjectProperty ; rdfs:domain kl:FailureMode ; rdfs:range kl:MaintenanceAction .
+kl:remedied_by a owl:ObjectProperty ; rdfs:domain kl:RootCause ; rdfs:range kl:MaintenanceAction .
+
+# ---- Instances (ABox) ----
+<http://example.org/digitwin/instance/Plant1> a kl:FunctionalLocation ;
+    rdfs:label "Plant 1" ;
+    kl:id "Plant1" ;
+    kl:level "Site" ;
+    kl:asset_path "Plant1" .
+<http://example.org/digitwin/instance/Utilities> a kl:FunctionalLocation ;
+    rdfs:label "Utilities Area" ;
+    kl:id "Utilities" ;
+    kl:level "Area" ;
+    kl:asset_path "Plant1/Utilities" .
+<http://example.org/digitwin/instance/CoolingWater> a kl:FunctionalLocation ;
+    rdfs:label "Cooling Water System" ;
+    kl:id "CoolingWater" ;
+    kl:level "System" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater" .
+<http://example.org/digitwin/instance/TK-100> a kl:Equipment ;
+    rdfs:label "Cooling water suction tank" ;
+    kl:id "TK-100" ;
+    kl:equipment_class "Tank" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/TK-100" .
+<http://example.org/digitwin/instance/STR-100> a kl:Equipment ;
+    rdfs:label "Suction strainer" ;
+    kl:id "STR-100" ;
+    kl:equipment_class "Strainer" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/STR-100" .
+<http://example.org/digitwin/instance/HV-101> a kl:Equipment ;
+    rdfs:label "Suction isolation valve" ;
+    kl:id "HV-101" ;
+    kl:equipment_class "ManualValve" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/HV-101" .
+<http://example.org/digitwin/instance/P-101> a kl:Equipment ;
+    rdfs:label "Cooling water pump" ;
+    kl:id "P-101" ;
+    kl:equipment_class "CentrifugalPump" ;
+    kl:parameters "{\"rated_flow_m3h\": 100.0, \"rated_head_m\": 50.0, \"shutoff_head_m\": 60.0, \"npshr_rated_m\": 4.0, \"speed_rpm\": 2950, \"motor_rated_power_kw\": 22.0, \"motor_full_load_current_a\": 40.0, \"suction_pipe_id_m\": 0.125, \"design_fluid_temp_c\": 30.0, \"fluid\": \"cooling water\", \"por_flow_m3h\": [70.0, 120.0], \"running_current_threshold_a\": 3.0}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101" .
+<http://example.org/digitwin/instance/NRV-102> a kl:Equipment ;
+    rdfs:label "Discharge check valve" ;
+    kl:id "NRV-102" ;
+    kl:equipment_class "CheckValve" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/NRV-102" .
+<http://example.org/digitwin/instance/HV-102> a kl:Equipment ;
+    rdfs:label "Discharge isolation valve" ;
+    kl:id "HV-102" ;
+    kl:equipment_class "ManualValve" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/HV-102" .
+<http://example.org/digitwin/instance/P-101.CASING> a kl:Component ;
+    rdfs:label "Volute casing" ;
+    kl:id "P-101.CASING" ;
+    kl:component_class "Casing" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/CASING" .
+<http://example.org/digitwin/instance/P-101.IMPELLER> a kl:Component ;
+    rdfs:label "Closed impeller" ;
+    kl:id "P-101.IMPELLER" ;
+    kl:component_class "Impeller" ;
+    kl:parameters "{\"vanes\": 6}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/IMPELLER" .
+<http://example.org/digitwin/instance/P-101.WEAR-RINGS> a kl:Component ;
+    rdfs:label "Wear rings" ;
+    kl:id "P-101.WEAR-RINGS" ;
+    kl:component_class "WearRing" ;
+    kl:parameters "{\"design_clearance_mm\": 0.35}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/WEAR-RINGS" .
+<http://example.org/digitwin/instance/P-101.SHAFT> a kl:Component ;
+    rdfs:label "Pump shaft" ;
+    kl:id "P-101.SHAFT" ;
+    kl:component_class "Shaft" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/SHAFT" .
+<http://example.org/digitwin/instance/P-101.BRG-DE> a kl:Component ;
+    rdfs:label "Drive-end bearing" ;
+    kl:id "P-101.BRG-DE" ;
+    kl:component_class "RollingBearing" ;
+    kl:parameters "{\"type\": \"6310 C3\"}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BRG-DE" .
+<http://example.org/digitwin/instance/P-101.BRG-NDE> a kl:Component ;
+    rdfs:label "Non-drive-end bearing" ;
+    kl:id "P-101.BRG-NDE" ;
+    kl:component_class "RollingBearing" ;
+    kl:parameters "{\"type\": \"7310 BECBM pair\"}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BRG-NDE" .
+<http://example.org/digitwin/instance/P-101.SEAL> a kl:Component ;
+    rdfs:label "Mechanical seal" ;
+    kl:id "P-101.SEAL" ;
+    kl:component_class "MechanicalSeal" ;
+    kl:parameters "{\"flush_plan\": \"API 682 Plan 11\"}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/SEAL" .
+<http://example.org/digitwin/instance/P-101.COUPLING> a kl:Component ;
+    rdfs:label "Flexible coupling" ;
+    kl:id "P-101.COUPLING" ;
+    kl:component_class "Coupling" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/COUPLING" .
+<http://example.org/digitwin/instance/P-101.MOTOR> a kl:Component ;
+    rdfs:label "Induction motor" ;
+    kl:id "P-101.MOTOR" ;
+    kl:component_class "ElectricMotor" ;
+    kl:parameters "{\"rated_power_kw\": 22.0, \"voltage_v\": 400, \"insulation_class\": \"F\"}" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/MOTOR" .
+<http://example.org/digitwin/instance/P-101.BASEPLATE> a kl:Component ;
+    rdfs:label "Baseplate and foundation" ;
+    kl:id "P-101.BASEPLATE" ;
+    kl:component_class "Baseplate" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BASEPLATE" .
+<http://example.org/digitwin/instance/PT-101> a kl:Sensor ;
+    rdfs:label "Suction pressure" ;
+    kl:id "PT-101" ;
+    kl:key "suction_pressure" ;
+    kl:measurand "pressure" ;
+    kl:unit "bar(a)" ;
+    kl:lo_lo "0.6"^^xsd:double ;
+    kl:lo "0.9"^^xsd:double ;
+    kl:hi "2.5"^^xsd:double ;
+    kl:normal_value "1.6"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/CASING/PT-101" .
+<http://example.org/digitwin/instance/ALM%3APT-101-LL> a kl:Alarm ;
+    rdfs:label "Suction pressure LOW_LOW" ;
+    kl:id "ALM:PT-101-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "0.6"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Suction pressure LOW_LOW (< 0.6 bar(a))" .
+<http://example.org/digitwin/instance/ALM%3APT-101-L> a kl:Alarm ;
+    rdfs:label "Suction pressure LOW" ;
+    kl:id "ALM:PT-101-L" ;
+    kl:state "LOW" ;
+    kl:limit "0.9"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Suction pressure LOW (< 0.9 bar(a))" .
+<http://example.org/digitwin/instance/ALM%3APT-101-H> a kl:Alarm ;
+    rdfs:label "Suction pressure HIGH" ;
+    kl:id "ALM:PT-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "2.5"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Suction pressure HIGH (> 2.5 bar(a))" .
+<http://example.org/digitwin/instance/PT-102> a kl:Sensor ;
+    rdfs:label "Discharge pressure" ;
+    kl:id "PT-102" ;
+    kl:key "discharge_pressure" ;
+    kl:measurand "pressure" ;
+    kl:unit "bar(a)" ;
+    kl:lo_lo "3.0"^^xsd:double ;
+    kl:lo "5.6"^^xsd:double ;
+    kl:hi "7.2"^^xsd:double ;
+    kl:hi_hi "8.0"^^xsd:double ;
+    kl:normal_value "6.5"^^xsd:double ;
+    kl:note "NORMAL band = pump curve over the Preferred Operating Region" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/CASING/PT-102" .
+<http://example.org/digitwin/instance/ALM%3APT-102-LL> a kl:Alarm ;
+    rdfs:label "Discharge pressure LOW_LOW" ;
+    kl:id "ALM:PT-102-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "3.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Discharge pressure LOW_LOW (< 3.0 bar(a))" .
+<http://example.org/digitwin/instance/ALM%3APT-102-L> a kl:Alarm ;
+    rdfs:label "Discharge pressure LOW" ;
+    kl:id "ALM:PT-102-L" ;
+    kl:state "LOW" ;
+    kl:limit "5.6"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Discharge pressure LOW (< 5.6 bar(a))" .
+<http://example.org/digitwin/instance/ALM%3APT-102-H> a kl:Alarm ;
+    rdfs:label "Discharge pressure HIGH" ;
+    kl:id "ALM:PT-102-H" ;
+    kl:state "HIGH" ;
+    kl:limit "7.2"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Discharge pressure HIGH (> 7.2 bar(a))" .
+<http://example.org/digitwin/instance/ALM%3APT-102-HH> a kl:Alarm ;
+    rdfs:label "Discharge pressure HIGH_HIGH" ;
+    kl:id "ALM:PT-102-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "8.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Discharge pressure HIGH_HIGH (> 8.0 bar(a))" .
+<http://example.org/digitwin/instance/FT-101> a kl:Sensor ;
+    rdfs:label "Discharge flow" ;
+    kl:id "FT-101" ;
+    kl:key "flow" ;
+    kl:measurand "volumetric flow" ;
+    kl:unit "m3/h" ;
+    kl:lo_lo "10.0"^^xsd:double ;
+    kl:lo "70.0"^^xsd:double ;
+    kl:hi "120.0"^^xsd:double ;
+    kl:hi_hi "135.0"^^xsd:double ;
+    kl:normal_value "100.0"^^xsd:double ;
+    kl:note "LOW/HIGH = outside API 610 Preferred Operating Region" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/FT-101" .
+<http://example.org/digitwin/instance/ALM%3AFT-101-LL> a kl:Alarm ;
+    rdfs:label "Discharge flow LOW_LOW" ;
+    kl:id "ALM:FT-101-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "10.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Discharge flow LOW_LOW (< 10.0 m3/h)" .
+<http://example.org/digitwin/instance/ALM%3AFT-101-L> a kl:Alarm ;
+    rdfs:label "Discharge flow LOW" ;
+    kl:id "ALM:FT-101-L" ;
+    kl:state "LOW" ;
+    kl:limit "70.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Discharge flow LOW (< 70.0 m3/h)" .
+<http://example.org/digitwin/instance/ALM%3AFT-101-H> a kl:Alarm ;
+    rdfs:label "Discharge flow HIGH" ;
+    kl:id "ALM:FT-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "120.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Discharge flow HIGH (> 120.0 m3/h)" .
+<http://example.org/digitwin/instance/ALM%3AFT-101-HH> a kl:Alarm ;
+    rdfs:label "Discharge flow HIGH_HIGH" ;
+    kl:id "ALM:FT-101-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "135.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Discharge flow HIGH_HIGH (> 135.0 m3/h)" .
+<http://example.org/digitwin/instance/VT-101> a kl:Sensor ;
+    rdfs:label "DE bearing radial vibration" ;
+    kl:id "VT-101" ;
+    kl:key "radial_vibration" ;
+    kl:measurand "vibration velocity (RMS)" ;
+    kl:unit "mm/s" ;
+    kl:hi "4.5"^^xsd:double ;
+    kl:hi_hi "7.1"^^xsd:double ;
+    kl:normal_value "2.0"^^xsd:double ;
+    kl:note "ISO 10816-3 Group 2, flexible" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BRG-DE/VT-101" .
+<http://example.org/digitwin/instance/ALM%3AVT-101-H> a kl:Alarm ;
+    rdfs:label "DE bearing radial vibration HIGH" ;
+    kl:id "ALM:VT-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "4.5"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "DE bearing radial vibration HIGH (> 4.5 mm/s)" .
+<http://example.org/digitwin/instance/ALM%3AVT-101-HH> a kl:Alarm ;
+    rdfs:label "DE bearing radial vibration HIGH_HIGH" ;
+    kl:id "ALM:VT-101-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "7.1"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "DE bearing radial vibration HIGH_HIGH (> 7.1 mm/s)" .
+<http://example.org/digitwin/instance/VT-102> a kl:Sensor ;
+    rdfs:label "DE bearing axial vibration" ;
+    kl:id "VT-102" ;
+    kl:key "axial_vibration" ;
+    kl:measurand "vibration velocity (RMS)" ;
+    kl:unit "mm/s" ;
+    kl:hi "4.5"^^xsd:double ;
+    kl:hi_hi "7.1"^^xsd:double ;
+    kl:normal_value "1.5"^^xsd:double ;
+    kl:note "ISO 10816-3 Group 2, flexible" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BRG-DE/VT-102" .
+<http://example.org/digitwin/instance/ALM%3AVT-102-H> a kl:Alarm ;
+    rdfs:label "DE bearing axial vibration HIGH" ;
+    kl:id "ALM:VT-102-H" ;
+    kl:state "HIGH" ;
+    kl:limit "4.5"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "DE bearing axial vibration HIGH (> 4.5 mm/s)" .
+<http://example.org/digitwin/instance/ALM%3AVT-102-HH> a kl:Alarm ;
+    rdfs:label "DE bearing axial vibration HIGH_HIGH" ;
+    kl:id "ALM:VT-102-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "7.1"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "DE bearing axial vibration HIGH_HIGH (> 7.1 mm/s)" .
+<http://example.org/digitwin/instance/TT-101> a kl:Sensor ;
+    rdfs:label "DE bearing temperature" ;
+    kl:id "TT-101" ;
+    kl:key "bearing_temperature" ;
+    kl:measurand "temperature" ;
+    kl:unit "degC" ;
+    kl:hi "82.0"^^xsd:double ;
+    kl:hi_hi "93.0"^^xsd:double ;
+    kl:normal_value "60.0"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/BRG-DE/TT-101" .
+<http://example.org/digitwin/instance/ALM%3ATT-101-H> a kl:Alarm ;
+    rdfs:label "DE bearing temperature HIGH" ;
+    kl:id "ALM:TT-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "82.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "DE bearing temperature HIGH (> 82.0 degC)" .
+<http://example.org/digitwin/instance/ALM%3ATT-101-HH> a kl:Alarm ;
+    rdfs:label "DE bearing temperature HIGH_HIGH" ;
+    kl:id "ALM:TT-101-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "93.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "DE bearing temperature HIGH_HIGH (> 93.0 degC)" .
+<http://example.org/digitwin/instance/TT-102> a kl:Sensor ;
+    rdfs:label "Pumped fluid temperature" ;
+    kl:id "TT-102" ;
+    kl:key "fluid_temperature" ;
+    kl:measurand "temperature" ;
+    kl:unit "degC" ;
+    kl:hi "45.0"^^xsd:double ;
+    kl:hi_hi "60.0"^^xsd:double ;
+    kl:normal_value "30.0"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/TT-102" .
+<http://example.org/digitwin/instance/ALM%3ATT-102-H> a kl:Alarm ;
+    rdfs:label "Pumped fluid temperature HIGH" ;
+    kl:id "ALM:TT-102-H" ;
+    kl:state "HIGH" ;
+    kl:limit "45.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Pumped fluid temperature HIGH (> 45.0 degC)" .
+<http://example.org/digitwin/instance/ALM%3ATT-102-HH> a kl:Alarm ;
+    rdfs:label "Pumped fluid temperature HIGH_HIGH" ;
+    kl:id "ALM:TT-102-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "60.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Pumped fluid temperature HIGH_HIGH (> 60.0 degC)" .
+<http://example.org/digitwin/instance/TT-103> a kl:Sensor ;
+    rdfs:label "Motor winding temperature" ;
+    kl:id "TT-103" ;
+    kl:key "motor_winding_temperature" ;
+    kl:measurand "temperature" ;
+    kl:unit "degC" ;
+    kl:hi "140.0"^^xsd:double ;
+    kl:hi_hi "155.0"^^xsd:double ;
+    kl:normal_value "95.0"^^xsd:double ;
+    kl:note "Class F insulation (155 degC)" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/MOTOR/TT-103" .
+<http://example.org/digitwin/instance/ALM%3ATT-103-H> a kl:Alarm ;
+    rdfs:label "Motor winding temperature HIGH" ;
+    kl:id "ALM:TT-103-H" ;
+    kl:state "HIGH" ;
+    kl:limit "140.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Motor winding temperature HIGH (> 140.0 degC)" .
+<http://example.org/digitwin/instance/ALM%3ATT-103-HH> a kl:Alarm ;
+    rdfs:label "Motor winding temperature HIGH_HIGH" ;
+    kl:id "ALM:TT-103-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "155.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Motor winding temperature HIGH_HIGH (> 155.0 degC)" .
+<http://example.org/digitwin/instance/TT-104> a kl:Sensor ;
+    rdfs:label "Seal chamber temperature" ;
+    kl:id "TT-104" ;
+    kl:key "seal_chamber_temperature" ;
+    kl:measurand "temperature" ;
+    kl:unit "degC" ;
+    kl:hi "70.0"^^xsd:double ;
+    kl:hi_hi "90.0"^^xsd:double ;
+    kl:normal_value "45.0"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/SEAL/TT-104" .
+<http://example.org/digitwin/instance/ALM%3ATT-104-H> a kl:Alarm ;
+    rdfs:label "Seal chamber temperature HIGH" ;
+    kl:id "ALM:TT-104-H" ;
+    kl:state "HIGH" ;
+    kl:limit "70.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Seal chamber temperature HIGH (> 70.0 degC)" .
+<http://example.org/digitwin/instance/ALM%3ATT-104-HH> a kl:Alarm ;
+    rdfs:label "Seal chamber temperature HIGH_HIGH" ;
+    kl:id "ALM:TT-104-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "90.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Seal chamber temperature HIGH_HIGH (> 90.0 degC)" .
+<http://example.org/digitwin/instance/IT-101> a kl:Sensor ;
+    rdfs:label "Motor current" ;
+    kl:id "IT-101" ;
+    kl:key "motor_current" ;
+    kl:measurand "electric current" ;
+    kl:unit "A" ;
+    kl:lo "22.0"^^xsd:double ;
+    kl:hi "40.0"^^xsd:double ;
+    kl:hi_hi "44.0"^^xsd:double ;
+    kl:normal_value "33.0"^^xsd:double ;
+    kl:note "hi = full-load current" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/MOTOR/IT-101" .
+<http://example.org/digitwin/instance/ALM%3AIT-101-L> a kl:Alarm ;
+    rdfs:label "Motor current LOW" ;
+    kl:id "ALM:IT-101-L" ;
+    kl:state "LOW" ;
+    kl:limit "22.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Motor current LOW (< 22.0 A)" .
+<http://example.org/digitwin/instance/ALM%3AIT-101-H> a kl:Alarm ;
+    rdfs:label "Motor current HIGH" ;
+    kl:id "ALM:IT-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "40.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Motor current HIGH (> 40.0 A)" .
+<http://example.org/digitwin/instance/ALM%3AIT-101-HH> a kl:Alarm ;
+    rdfs:label "Motor current HIGH_HIGH" ;
+    kl:id "ALM:IT-101-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "44.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Motor current HIGH_HIGH (> 44.0 A)" .
+<http://example.org/digitwin/instance/LS-101> a kl:Sensor ;
+    rdfs:label "Seal leak detector" ;
+    kl:id "LS-101" ;
+    kl:key "seal_leak" ;
+    kl:measurand "leak switch (0/1)" ;
+    kl:unit "-" ;
+    kl:hi "0.5"^^xsd:double ;
+    kl:normal_value "0.0"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/SEAL/LS-101" .
+<http://example.org/digitwin/instance/ALM%3ALS-101-H> a kl:Alarm ;
+    rdfs:label "Seal leak detector HIGH" ;
+    kl:id "ALM:LS-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "0.5"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Seal leak detector HIGH (> 0.5)" .
+<http://example.org/digitwin/instance/LT-100> a kl:Sensor ;
+    rdfs:label "Suction tank level" ;
+    kl:id "LT-100" ;
+    kl:key "suction_tank_level" ;
+    kl:measurand "level" ;
+    kl:unit "%" ;
+    kl:lo_lo "10.0"^^xsd:double ;
+    kl:lo "20.0"^^xsd:double ;
+    kl:hi "95.0"^^xsd:double ;
+    kl:normal_value "70.0"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/TK-100/LT-100" .
+<http://example.org/digitwin/instance/ALM%3ALT-100-LL> a kl:Alarm ;
+    rdfs:label "Suction tank level LOW_LOW" ;
+    kl:id "ALM:LT-100-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "10.0"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Suction tank level LOW_LOW (< 10.0 %)" .
+<http://example.org/digitwin/instance/ALM%3ALT-100-L> a kl:Alarm ;
+    rdfs:label "Suction tank level LOW" ;
+    kl:id "ALM:LT-100-L" ;
+    kl:state "LOW" ;
+    kl:limit "20.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Suction tank level LOW (< 20.0 %)" .
+<http://example.org/digitwin/instance/ALM%3ALT-100-H> a kl:Alarm ;
+    rdfs:label "Suction tank level HIGH" ;
+    kl:id "ALM:LT-100-H" ;
+    kl:state "HIGH" ;
+    kl:limit "95.0"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Suction tank level HIGH (> 95.0 %)" .
+<http://example.org/digitwin/instance/PDT-100> a kl:Sensor ;
+    rdfs:label "Suction strainer differential pressure" ;
+    kl:id "PDT-100" ;
+    kl:key "strainer_dp" ;
+    kl:measurand "differential pressure" ;
+    kl:unit "bar" ;
+    kl:hi "0.3"^^xsd:double ;
+    kl:hi_hi "0.6"^^xsd:double ;
+    kl:normal_value "0.05"^^xsd:double ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/STR-100/PDT-100" .
+<http://example.org/digitwin/instance/ALM%3APDT-100-H> a kl:Alarm ;
+    rdfs:label "Suction strainer differential pressure HIGH" ;
+    kl:id "ALM:PDT-100-H" ;
+    kl:state "HIGH" ;
+    kl:limit "0.3"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Suction strainer differential pressure HIGH (> 0.3 bar)" .
+<http://example.org/digitwin/instance/ALM%3APDT-100-HH> a kl:Alarm ;
+    rdfs:label "Suction strainer differential pressure HIGH_HIGH" ;
+    kl:id "ALM:PDT-100-HH" ;
+    kl:state "HIGH_HIGH" ;
+    kl:limit "0.6"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Suction strainer differential pressure HIGH_HIGH (> 0.6 bar)" .
+<http://example.org/digitwin/instance/NPSH-101> a kl:VirtualSensor ;
+    rdfs:label "NPSH margin ratio" ;
+    kl:id "NPSH-101" ;
+    kl:key "npsh_margin" ;
+    kl:unit "-" ;
+    kl:formula "NPSHa / NPSH3 with NPSHa = (p_s - p_v(T)) / (rho g) + v^2/2g" ;
+    kl:lo_lo "1.1"^^xsd:double ;
+    kl:lo "1.3"^^xsd:double ;
+    kl:note "margin < 1.3 => cavitation risk" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/NPSH-101" .
+<http://example.org/digitwin/instance/ALM%3ANPSH-101-LL> a kl:Alarm ;
+    rdfs:label "NPSH margin ratio LOW_LOW" ;
+    kl:id "ALM:NPSH-101-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "1.1"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "NPSH margin ratio LOW_LOW (< 1.1)" .
+<http://example.org/digitwin/instance/ALM%3ANPSH-101-L> a kl:Alarm ;
+    rdfs:label "NPSH margin ratio LOW" ;
+    kl:id "ALM:NPSH-101-L" ;
+    kl:state "LOW" ;
+    kl:limit "1.3"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "NPSH margin ratio LOW (< 1.3)" .
+<http://example.org/digitwin/instance/HEAD-101> a kl:VirtualSensor ;
+    rdfs:label "Head ratio vs. OEM curve" ;
+    kl:id "HEAD-101" ;
+    kl:key "head_ratio" ;
+    kl:unit "-" ;
+    kl:formula "H_measured / H_curve(Q) with H_measured = (p_d - p_s) / (rho g)" ;
+    kl:lo_lo "0.8"^^xsd:double ;
+    kl:lo "0.9"^^xsd:double ;
+    kl:hi "1.1"^^xsd:double ;
+    kl:note "< 0.9 => pump develops less head than its curve" ;
+    kl:asset_path "Plant1/Utilities/CoolingWater/P-101/HEAD-101" .
+<http://example.org/digitwin/instance/ALM%3AHEAD-101-LL> a kl:Alarm ;
+    rdfs:label "Head ratio vs. OEM curve LOW_LOW" ;
+    kl:id "ALM:HEAD-101-LL" ;
+    kl:state "LOW_LOW" ;
+    kl:limit "0.8"^^xsd:double ;
+    kl:severity "HIGH" ;
+    kl:message "Head ratio vs. OEM curve LOW_LOW (< 0.8)" .
+<http://example.org/digitwin/instance/ALM%3AHEAD-101-L> a kl:Alarm ;
+    rdfs:label "Head ratio vs. OEM curve LOW" ;
+    kl:id "ALM:HEAD-101-L" ;
+    kl:state "LOW" ;
+    kl:limit "0.9"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Head ratio vs. OEM curve LOW (< 0.9)" .
+<http://example.org/digitwin/instance/ALM%3AHEAD-101-H> a kl:Alarm ;
+    rdfs:label "Head ratio vs. OEM curve HIGH" ;
+    kl:id "ALM:HEAD-101-H" ;
+    kl:state "HIGH" ;
+    kl:limit "1.1"^^xsd:double ;
+    kl:severity "MEDIUM" ;
+    kl:message "Head ratio vs. OEM curve HIGH (> 1.1)" .
+<http://example.org/digitwin/instance/A-STOP-PUMP> a kl:MaintenanceAction ;
+    rdfs:label "Stop the pump and start the standby unit to prevent further damage" ;
+    kl:id "A-STOP-PUMP" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-PLAN-SHUTDOWN> a kl:MaintenanceAction ;
+    rdfs:label "Plan a controlled shutdown and switch to the standby pump" ;
+    kl:id "A-PLAN-SHUTDOWN" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-REDUCE-FLOW> a kl:MaintenanceAction ;
+    rdfs:label "Throttle the discharge valve to return flow to the Preferred Operating Region (70-120 m3/h)" ;
+    kl:id "A-REDUCE-FLOW" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-LIMIT-FLOW> a kl:MaintenanceAction ;
+    rdfs:label "Temporarily reduce flow (throttle discharge) to cut suction-side losses until the cause is removed" ;
+    kl:id "A-LIMIT-FLOW" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-OPEN-DISCHARGE> a kl:MaintenanceAction ;
+    rdfs:label "Open the discharge valve / restore the discharge path; verify minimum-flow bypass is open" ;
+    kl:id "A-OPEN-DISCHARGE" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-RESTORE-SUCTION> a kl:MaintenanceAction ;
+    rdfs:label "Restore suction supply (tank level, suction valve) and re-prime before restart" ;
+    kl:id "A-RESTORE-SUCTION" ;
+    kl:action_type "IMMEDIATE" .
+<http://example.org/digitwin/instance/A-NPSH-CHECK> a kl:MaintenanceAction ;
+    rdfs:label "Recalculate NPSHa vs. NPSH3 at the actual flow and fluid temperature" ;
+    kl:id "A-NPSH-CHECK" ;
+    kl:action_type "DIAGNOSTIC" .
+<http://example.org/digitwin/instance/A-VIB-SPECTRUM> a kl:MaintenanceAction ;
+    rdfs:label "Take an FFT vibration spectrum (1x, 2x, bearing defect frequencies) to confirm the mechanical fault" ;
+    kl:id "A-VIB-SPECTRUM" ;
+    kl:action_type "DIAGNOSTIC" .
+<http://example.org/digitwin/instance/A-PERF-TEST> a kl:MaintenanceAction ;
+    rdfs:label "Run a performance test and compare measured H-Q points with the OEM curve" ;
+    kl:id "A-PERF-TEST" ;
+    kl:action_type "DIAGNOSTIC" .
+<http://example.org/digitwin/instance/A-LUBE-CHECK> a kl:MaintenanceAction ;
+    rdfs:label "Check bearing lubricant level, condition and contamination (oil analysis)" ;
+    kl:id "A-LUBE-CHECK" ;
+    kl:action_type "DIAGNOSTIC" .
+<http://example.org/digitwin/instance/A-ELEC-CHECK> a kl:MaintenanceAction ;
+    rdfs:label "Check supply voltage balance, motor insulation resistance and overload relay settings" ;
+    kl:id "A-ELEC-CHECK" ;
+    kl:action_type "DIAGNOSTIC" .
+<http://example.org/digitwin/instance/A-CLEAN-STRAINER> a kl:MaintenanceAction ;
+    rdfs:label "Clean or replace the suction strainer element" ;
+    kl:id "A-CLEAN-STRAINER" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-RESTORE-LEVEL> a kl:MaintenanceAction ;
+    rdfs:label "Restore suction tank level; check level control and make-up supply" ;
+    kl:id "A-RESTORE-LEVEL" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-COOL-FLUID> a kl:MaintenanceAction ;
+    rdfs:label "Restore fluid cooling (check upstream cooler) to lower the vapour pressure" ;
+    kl:id "A-COOL-FLUID" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-OPEN-SUCTION-VALVE> a kl:MaintenanceAction ;
+    rdfs:label "Fully open the suction isolation valve (never throttle on the suction side)" ;
+    kl:id "A-OPEN-SUCTION-VALVE" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-REPRIME> a kl:MaintenanceAction ;
+    rdfs:label "Vent the casing and re-prime; locate and seal air-ingress points" ;
+    kl:id "A-REPRIME" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-ALIGN> a kl:MaintenanceAction ;
+    rdfs:label "Laser-align pump and motor shafts to coupling tolerance" ;
+    kl:id "A-ALIGN" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-PIPE-SUPPORT> a kl:MaintenanceAction ;
+    rdfs:label "Check pipe supports and remove nozzle loads (pipe strain)" ;
+    kl:id "A-PIPE-SUPPORT" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-SOFT-FOOT> a kl:MaintenanceAction ;
+    rdfs:label "Check and correct soft foot, grout and anchor bolts" ;
+    kl:id "A-SOFT-FOOT" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-RELUBRICATE> a kl:MaintenanceAction ;
+    rdfs:label "Replenish or replace the lubricant with the specified grade" ;
+    kl:id "A-RELUBRICATE" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-REPLACE-BEARING> a kl:MaintenanceAction ;
+    rdfs:label "Replace the drive-end bearing; inspect shaft and housing fits" ;
+    kl:id "A-REPLACE-BEARING" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-BALANCE-IMPELLER> a kl:MaintenanceAction ;
+    rdfs:label "Clean and dynamically balance the impeller (ISO 21940-11 grade G6.3)" ;
+    kl:id "A-BALANCE-IMPELLER" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-REPLACE-IMPELLER> a kl:MaintenanceAction ;
+    rdfs:label "Inspect and repair or replace the impeller" ;
+    kl:id "A-REPLACE-IMPELLER" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-RESTORE-CLEARANCE> a kl:MaintenanceAction ;
+    rdfs:label "Replace wear rings to restore the design running clearance" ;
+    kl:id "A-RESTORE-CLEARANCE" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-REPLACE-SEAL> a kl:MaintenanceAction ;
+    rdfs:label "Replace seal faces and elastomers; verify the seal flush plan" ;
+    kl:id "A-REPLACE-SEAL" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-REPAIR-CHECK-VALVE> a kl:MaintenanceAction ;
+    rdfs:label "Inspect and repair the discharge check valve" ;
+    kl:id "A-REPAIR-CHECK-VALVE" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-CLEAR-DISCHARGE> a kl:MaintenanceAction ;
+    rdfs:label "Inspect and clear the discharge line / downstream blockage" ;
+    kl:id "A-CLEAR-DISCHARGE" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-FREE-ROTOR> a kl:MaintenanceAction ;
+    rdfs:label "With the pump isolated, check the rotor turns freely; inspect for rubbing" ;
+    kl:id "A-FREE-ROTOR" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/A-CHECK-FLUID> a kl:MaintenanceAction ;
+    rdfs:label "Verify fluid density and viscosity against the pump datasheet" ;
+    kl:id "A-CHECK-FLUID" ;
+    kl:action_type "CORRECTIVE" .
+<http://example.org/digitwin/instance/FM-CAVITATION> a kl:FailureMode ;
+    rdfs:label "Cavitation" ;
+    kl:id "FM-CAVITATION" ;
+    kl:severity "HIGH" ;
+    kl:description "Vapour bubbles form at the impeller eye and collapse inside the impeller." ;
+    kl:physics "When the absolute pressure at the impeller eye approaches the fluid's vapour pressure (NPSHa approaching NPSH3), vapour bubbles form and then collapse violently in higher-pressure regions. The implosions cause broadband vibration and noise, pit the vanes, and vapour blocking the passages breaks down the developed head and flow." .
+<http://example.org/digitwin/instance/FM-BEARING> a kl:FailureMode ;
+    rdfs:label "Drive-end bearing degradation" ;
+    kl:id "FM-BEARING" ;
+    kl:severity "HIGH" ;
+    kl:description "Rolling-element bearing distress (lubrication failure, contamination or fatigue)." ;
+    kl:physics "Loss of the lubricant film, contamination or fatigue spalling increases rolling friction, raising bearing temperature; defects on races or rolling elements generate impacts that raise radial vibration. Higher temperature degrades the lubricant further, a self-accelerating loop." .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> a kl:FailureMode ;
+    rdfs:label "Pump-motor shaft misalignment" ;
+    kl:id "FM-MISALIGNMENT" ;
+    kl:severity "MEDIUM" ;
+    kl:description "Angular or parallel offset between pump and motor shafts." ;
+    kl:physics "The coupling is forced to flex every revolution, producing cyclic reaction forces that are characteristically strong in the axial direction (1x and 2x running speed) and add load to the bearings, which raises bearing temperature." .
+<http://example.org/digitwin/instance/FM-IMBALANCE> a kl:FailureMode ;
+    rdfs:label "Rotor / impeller imbalance" ;
+    kl:id "FM-IMBALANCE" ;
+    kl:severity "MEDIUM" ;
+    kl:description "Mass centre of the rotor offset from its axis of rotation." ;
+    kl:physics "The offset mass creates a centrifugal force F = m*e*omega^2 rotating at 1x running speed, giving predominantly radial vibration. Hydraulic performance (head, NPSH) is unaffected, which distinguishes imbalance from cavitation: while the NPSH margin is low, vibration cannot be attributed to imbalance." .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> a kl:FailureMode ;
+    rdfs:label "Mechanical seal leakage" ;
+    kl:id "FM-SEAL-LEAK" ;
+    kl:severity "HIGH" ;
+    kl:description "Process fluid escaping across the mechanical seal faces." ;
+    kl:physics "The seal relies on a thin fluid film between rotating and stationary faces. Face wear, thermal distortion or heat-checking (e.g. after dry running) and elastomer degradation open the gap; leakage trips the leak detector and frictional heat raises the seal-chamber temperature." .
+<http://example.org/digitwin/instance/FM-DRY-RUN> a kl:FailureMode ;
+    rdfs:label "Dry running (loss of suction)" ;
+    kl:id "FM-DRY-RUN" ;
+    kl:severity "CRITICAL" ;
+    kl:description "The pump runs without liquid in the casing." ;
+    kl:physics "Without liquid the impeller cannot develop head: discharge pressure collapses toward suction pressure and the head ratio falls to near zero. The motor only supplies mechanical losses, so current drops well below normal. The seal faces lose their lubricating and cooling film and overheat within minutes." .
+<http://example.org/digitwin/instance/FM-DEADHEAD> a kl:FailureMode ;
+    rdfs:label "Deadheading (blocked discharge)" ;
+    kl:id "FM-DEADHEAD" ;
+    kl:severity "CRITICAL" ;
+    kl:description "The pump runs against a closed or blocked discharge." ;
+    kl:physics "The pump operates at shut-off: pressure rises to the shut-off head while flow is ~zero. For a radial centrifugal pump absorbed power is minimum at shut-off, so motor current FALLS (it does not rise). All absorbed power heats the trapped liquid, so seal-chamber temperature climbs and the liquid can eventually flash to vapour." .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> a kl:FailureMode ;
+    rdfs:label "Hydraulic degradation (impeller / wear-ring wear)" ;
+    kl:id "FM-IMPELLER-WEAR" ;
+    kl:severity "MEDIUM" ;
+    kl:description "Pump develops less head than its OEM curve at the same flow." ;
+    kl:physics "Vane erosion and opened wear-ring clearances increase internal recirculation from discharge back to suction, so the pump develops less head than its curve at the measured flow (head ratio < 1). NPSH margin stays healthy and the motor stays loaded, which separates wear from cavitation and from loss of suction." .
+<http://example.org/digitwin/instance/FM-OVERLOAD> a kl:FailureMode ;
+    rdfs:label "Motor overload" ;
+    kl:id "FM-OVERLOAD" ;
+    kl:severity "HIGH" ;
+    kl:description "Motor draws more than its full-load current." ;
+    kl:physics "Motor current tracks shaft load. For a radial centrifugal pump absorbed power rises with flow, so running far right on the curve (runout) overloads the motor; mechanical drag, a denser fluid or a low/unbalanced supply voltage do the same. The extra I^2R losses raise the winding temperature toward the insulation limit." .
+<http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ALOW> a kl:Symptom ;
+    rdfs:label "NPSH margin ratio LOW" ;
+    kl:id "SYM:npsh_margin:LOW" ;
+    kl:key "npsh_margin" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> a kl:Symptom ;
+    rdfs:label "Suction pressure LOW" ;
+    kl:id "SYM:suction_pressure:LOW" ;
+    kl:key "suction_pressure" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> a kl:Symptom ;
+    rdfs:label "DE bearing radial vibration HIGH" ;
+    kl:id "SYM:radial_vibration:HIGH" ;
+    kl:key "radial_vibration" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> a kl:Symptom ;
+    rdfs:label "Head ratio vs. OEM curve LOW" ;
+    kl:id "SYM:head_ratio:LOW" ;
+    kl:key "head_ratio" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> a kl:Symptom ;
+    rdfs:label "Discharge pressure LOW" ;
+    kl:id "SYM:discharge_pressure:LOW" ;
+    kl:key "discharge_pressure" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> a kl:Symptom ;
+    rdfs:label "Discharge flow LOW" ;
+    kl:id "SYM:flow:LOW" ;
+    kl:key "flow" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> a kl:Symptom ;
+    rdfs:label "DE bearing temperature HIGH" ;
+    kl:id "SYM:bearing_temperature:HIGH" ;
+    kl:key "bearing_temperature" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3AHIGH> a kl:Symptom ;
+    rdfs:label "DE bearing axial vibration HIGH" ;
+    kl:id "SYM:axial_vibration:HIGH" ;
+    kl:key "axial_vibration" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> a kl:Symptom ;
+    rdfs:label "NPSH margin ratio NORMAL" ;
+    kl:id "SYM:npsh_margin:NORMAL" ;
+    kl:key "npsh_margin" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3ANORMAL> a kl:Symptom ;
+    rdfs:label "DE bearing axial vibration NORMAL" ;
+    kl:id "SYM:axial_vibration:NORMAL" ;
+    kl:key "axial_vibration" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Abearing_temperature%3ANORMAL> a kl:Symptom ;
+    rdfs:label "DE bearing temperature NORMAL" ;
+    kl:id "SYM:bearing_temperature:NORMAL" ;
+    kl:key "bearing_temperature" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> a kl:Symptom ;
+    rdfs:label "Head ratio vs. OEM curve NORMAL" ;
+    kl:id "SYM:head_ratio:NORMAL" ;
+    kl:key "head_ratio" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Aseal_leak%3AHIGH> a kl:Symptom ;
+    rdfs:label "Seal leak detector HIGH" ;
+    kl:id "SYM:seal_leak:HIGH" ;
+    kl:key "seal_leak" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> a kl:Symptom ;
+    rdfs:label "Seal chamber temperature HIGH" ;
+    kl:id "SYM:seal_chamber_temperature:HIGH" ;
+    kl:key "seal_chamber_temperature" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> a kl:Symptom ;
+    rdfs:label "Discharge flow LOW_LOW" ;
+    kl:id "SYM:flow:LOW_LOW" ;
+    kl:key "flow" ;
+    kl:state "LOW_LOW" .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> a kl:Symptom ;
+    rdfs:label "Motor current LOW" ;
+    kl:id "SYM:motor_current:LOW" ;
+    kl:key "motor_current" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3AHIGH> a kl:Symptom ;
+    rdfs:label "Discharge pressure HIGH" ;
+    kl:id "SYM:discharge_pressure:HIGH" ;
+    kl:key "discharge_pressure" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3ANORMAL> a kl:Symptom ;
+    rdfs:label "Motor current NORMAL" ;
+    kl:id "SYM:motor_current:NORMAL" ;
+    kl:key "motor_current" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3AHIGH> a kl:Symptom ;
+    rdfs:label "Motor current HIGH" ;
+    kl:id "SYM:motor_current:HIGH" ;
+    kl:key "motor_current" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/SYM%3Amotor_winding_temperature%3AHIGH> a kl:Symptom ;
+    rdfs:label "Motor winding temperature HIGH" ;
+    kl:id "SYM:motor_winding_temperature:HIGH" ;
+    kl:key "motor_winding_temperature" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> a kl:RootCause ;
+    rdfs:label "Clogged suction strainer" ;
+    kl:id "RC-STRAINER-CLOGGED" ;
+    kl:description "Debris on the strainer adds suction-side pressure loss, lowering NPSHa." ;
+    kl:prior "0.7"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Astrainer_dp%3AHIGH> a kl:Symptom ;
+    rdfs:label "Suction strainer differential pressure HIGH" ;
+    kl:id "SYM:strainer_dp:HIGH" ;
+    kl:key "strainer_dp" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> a kl:RootCause ;
+    rdfs:label "Low suction tank level" ;
+    kl:id "RC-LOW-TANK-LEVEL" ;
+    kl:description "Reduced static head (and possible vortexing) lowers NPSHa." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW> a kl:Symptom ;
+    rdfs:label "Suction tank level LOW" ;
+    kl:id "SYM:suction_tank_level:LOW" ;
+    kl:key "suction_tank_level" ;
+    kl:state "LOW" .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> a kl:RootCause ;
+    rdfs:label "High fluid temperature" ;
+    kl:id "RC-HIGH-FLUID-TEMP" ;
+    kl:description "Vapour pressure rises steeply with temperature, consuming the NPSH margin." ;
+    kl:prior "0.4"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> a kl:Symptom ;
+    rdfs:label "Pumped fluid temperature HIGH" ;
+    kl:id "SYM:fluid_temperature:HIGH" ;
+    kl:key "fluid_temperature" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> a kl:RootCause ;
+    rdfs:label "Partially closed suction valve" ;
+    kl:id "RC-SUCTION-VALVE-THROTTLED" ;
+    kl:description "A throttled suction valve adds pressure loss after the strainer. Confirmed by elimination: low suction pressure with normal strainer DP, tank level and fluid temperature." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Astrainer_dp%3ANORMAL> a kl:Symptom ;
+    rdfs:label "Suction strainer differential pressure NORMAL" ;
+    kl:id "SYM:strainer_dp:NORMAL" ;
+    kl:key "strainer_dp" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> a kl:Symptom ;
+    rdfs:label "Suction tank level NORMAL" ;
+    kl:id "SYM:suction_tank_level:NORMAL" ;
+    kl:key "suction_tank_level" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/SYM%3Afluid_temperature%3ANORMAL> a kl:Symptom ;
+    rdfs:label "Pumped fluid temperature NORMAL" ;
+    kl:id "SYM:fluid_temperature:NORMAL" ;
+    kl:key "fluid_temperature" ;
+    kl:state "NORMAL" .
+<http://example.org/digitwin/instance/RC-RUNOUT> a kl:RootCause ;
+    rdfs:label "Runout operation (low system resistance)" ;
+    kl:id "RC-RUNOUT" ;
+    kl:description "Flow far beyond rated raises NPSH3, suction losses and absorbed power." ;
+    kl:prior "0.5"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Aflow%3AHIGH> a kl:Symptom ;
+    rdfs:label "Discharge flow HIGH" ;
+    kl:id "SYM:flow:HIGH" ;
+    kl:key "flow" ;
+    kl:state "HIGH" .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> a kl:RootCause ;
+    rdfs:label "Empty suction tank" ;
+    kl:id "RC-EMPTY-TANK" ;
+    kl:description "No liquid reaches the pump suction." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW_LOW> a kl:Symptom ;
+    rdfs:label "Suction tank level LOW_LOW" ;
+    kl:id "SYM:suction_tank_level:LOW_LOW" ;
+    kl:key "suction_tank_level" ;
+    kl:state "LOW_LOW" .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> a kl:RootCause ;
+    rdfs:label "Closed suction valve" ;
+    kl:id "RC-SUCTION-VALVE-CLOSED" ;
+    kl:description "Suction isolation valve left closed; pump pulls a vacuum on its own casing." ;
+    kl:prior "0.4"^^xsd:double .
+<http://example.org/digitwin/instance/RC-LOSS-OF-PRIME> a kl:RootCause ;
+    rdfs:label "Air ingress / loss of prime" ;
+    kl:id "RC-LOSS-OF-PRIME" ;
+    kl:description "Air leaking into the suction line or casing displaces the liquid." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-LUBRICATION> a kl:RootCause ;
+    rdfs:label "Insufficient or degraded lubrication" ;
+    kl:id "RC-LUBRICATION" ;
+    kl:description "Low oil level, wrong grade or oxidised lubricant." ;
+    kl:prior "0.7"^^xsd:double .
+<http://example.org/digitwin/instance/RC-LUBE-CONTAMINATION> a kl:RootCause ;
+    rdfs:label "Lubricant contamination" ;
+    kl:id "RC-LUBE-CONTAMINATION" ;
+    kl:description "Water or particles in the lubricant damage raceways." ;
+    kl:prior "0.5"^^xsd:double .
+<http://example.org/digitwin/instance/RC-BEARING-FATIGUE> a kl:RootCause ;
+    rdfs:label "Bearing fatigue (end of L10 life)" ;
+    kl:id "RC-BEARING-FATIGUE" ;
+    kl:description "Sub-surface fatigue spalling after the rated number of cycles." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-INSTALL-MISALIGN> a kl:RootCause ;
+    rdfs:label "Improper alignment after installation / overhaul" ;
+    kl:id "RC-INSTALL-MISALIGN" ;
+    kl:description "Shafts not aligned to tolerance when the pump was last installed." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/RC-PIPE-STRAIN> a kl:RootCause ;
+    rdfs:label "Pipe strain on pump nozzles" ;
+    kl:id "RC-PIPE-STRAIN" ;
+    kl:description "Piping forces distort the casing and move the pump shaft." ;
+    kl:prior "0.4"^^xsd:double .
+<http://example.org/digitwin/instance/RC-SOFT-FOOT> a kl:RootCause ;
+    rdfs:label "Soft foot / foundation settlement" ;
+    kl:id "RC-SOFT-FOOT" ;
+    kl:description "Uneven support lets the machine move when bolts are tightened or under load." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-IMPELLER-FOULING> a kl:RootCause ;
+    rdfs:label "Uneven impeller fouling" ;
+    kl:id "RC-IMPELLER-FOULING" ;
+    kl:description "Non-uniform deposits shift the impeller's mass centre." ;
+    kl:prior "0.5"^^xsd:double .
+<http://example.org/digitwin/instance/RC-IMPELLER-DAMAGE> a kl:RootCause ;
+    rdfs:label "Impeller damage (foreign object / broken vane)" ;
+    kl:id "RC-IMPELLER-DAMAGE" ;
+    kl:description "Missing or damaged vane material unbalances the rotor and reduces head." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-WEAR-RING-WEAR> a kl:RootCause ;
+    rdfs:label "Excessive wear-ring clearance" ;
+    kl:id "RC-WEAR-RING-WEAR" ;
+    kl:description "Abrasive wear opens the running clearance and increases internal recirculation." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/RC-SEAL-FACE-WEAR> a kl:RootCause ;
+    rdfs:label "Seal face wear (end of life)" ;
+    kl:id "RC-SEAL-FACE-WEAR" ;
+    kl:description "Normal wear of the carbon / silicon-carbide faces." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> a kl:RootCause ;
+    rdfs:label "Seal elastomer degradation" ;
+    kl:id "RC-ELASTOMER-DEGRADATION" ;
+    kl:description "O-rings harden or swell from temperature or chemical attack." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-DISCHARGE-VALVE-CLOSED> a kl:RootCause ;
+    rdfs:label "Closed discharge valve" ;
+    kl:id "RC-DISCHARGE-VALVE-CLOSED" ;
+    kl:description "Discharge isolation valve closed or not opened after start-up." ;
+    kl:prior "0.6"^^xsd:double .
+<http://example.org/digitwin/instance/RC-CHECK-VALVE-STUCK> a kl:RootCause ;
+    rdfs:label "Check valve stuck closed" ;
+    kl:id "RC-CHECK-VALVE-STUCK" ;
+    kl:description "The non-return valve disc is jammed shut." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-DISCHARGE-BLOCKED> a kl:RootCause ;
+    rdfs:label "Downstream line blockage" ;
+    kl:id "RC-DISCHARGE-BLOCKED" ;
+    kl:description "Debris or a closed valve further downstream blocks the discharge line." ;
+    kl:prior "0.2"^^xsd:double .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> a kl:RootCause ;
+    rdfs:label "Mechanical binding / rubbing" ;
+    kl:id "RC-MECH-BINDING" ;
+    kl:description "Rotor rubbing on stationary parts adds friction load." ;
+    kl:prior "0.3"^^xsd:double .
+<http://example.org/digitwin/instance/RC-SUPPLY-VOLTAGE> a kl:RootCause ;
+    rdfs:label "Low or unbalanced supply voltage" ;
+    kl:id "RC-SUPPLY-VOLTAGE" ;
+    kl:description "For the same load, lower or unbalanced voltage increases motor current." ;
+    kl:prior "0.4"^^xsd:double .
+<http://example.org/digitwin/instance/RC-DENSE-FLUID> a kl:RootCause ;
+    rdfs:label "Fluid denser or more viscous than design" ;
+    kl:id "RC-DENSE-FLUID" ;
+    kl:description "Absorbed power is proportional to density (and rises with viscosity)." ;
+    kl:prior "0.1"^^xsd:double .
+<http://example.org/digitwin/instance/Plant1> kl:contains <http://example.org/digitwin/instance/Utilities> .
+<http://example.org/digitwin/instance/Utilities> kl:contains <http://example.org/digitwin/instance/CoolingWater> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/TK-100> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/STR-100> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/HV-101> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/NRV-102> .
+<http://example.org/digitwin/instance/CoolingWater> kl:contains <http://example.org/digitwin/instance/HV-102> .
+<http://example.org/digitwin/instance/TK-100> kl:feeds <http://example.org/digitwin/instance/STR-100> .
+<http://example.org/digitwin/instance/STR-100> kl:feeds <http://example.org/digitwin/instance/HV-101> .
+<http://example.org/digitwin/instance/HV-101> kl:feeds <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/P-101> kl:feeds <http://example.org/digitwin/instance/NRV-102> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.CASING> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.WEAR-RINGS> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.SHAFT> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.BRG-NDE> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.COUPLING> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.MOTOR> .
+<http://example.org/digitwin/instance/P-101> kl:has_component <http://example.org/digitwin/instance/P-101.BASEPLATE> .
+<http://example.org/digitwin/instance/NRV-102> kl:feeds <http://example.org/digitwin/instance/HV-102> .
+<http://example.org/digitwin/instance/PT-101> kl:monitors <http://example.org/digitwin/instance/P-101.CASING> .
+<http://example.org/digitwin/instance/PT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-101-LL> .
+<http://example.org/digitwin/instance/PT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-101-L> .
+<http://example.org/digitwin/instance/PT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-101-H> .
+<http://example.org/digitwin/instance/PT-102> kl:monitors <http://example.org/digitwin/instance/P-101.CASING> .
+<http://example.org/digitwin/instance/PT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-102-LL> .
+<http://example.org/digitwin/instance/PT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-102-L> .
+<http://example.org/digitwin/instance/PT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-102-H> .
+<http://example.org/digitwin/instance/PT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3APT-102-HH> .
+<http://example.org/digitwin/instance/FT-101> kl:monitors <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/FT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AFT-101-LL> .
+<http://example.org/digitwin/instance/FT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AFT-101-L> .
+<http://example.org/digitwin/instance/FT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AFT-101-H> .
+<http://example.org/digitwin/instance/FT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AFT-101-HH> .
+<http://example.org/digitwin/instance/VT-101> kl:monitors <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/VT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AVT-101-H> .
+<http://example.org/digitwin/instance/VT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AVT-101-HH> .
+<http://example.org/digitwin/instance/VT-102> kl:monitors <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/VT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3AVT-102-H> .
+<http://example.org/digitwin/instance/VT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3AVT-102-HH> .
+<http://example.org/digitwin/instance/TT-101> kl:monitors <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/TT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-101-H> .
+<http://example.org/digitwin/instance/TT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-101-HH> .
+<http://example.org/digitwin/instance/TT-102> kl:monitors <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/TT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-102-H> .
+<http://example.org/digitwin/instance/TT-102> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-102-HH> .
+<http://example.org/digitwin/instance/TT-103> kl:monitors <http://example.org/digitwin/instance/P-101.MOTOR> .
+<http://example.org/digitwin/instance/TT-103> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-103-H> .
+<http://example.org/digitwin/instance/TT-103> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-103-HH> .
+<http://example.org/digitwin/instance/TT-104> kl:monitors <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/TT-104> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-104-H> .
+<http://example.org/digitwin/instance/TT-104> kl:triggers <http://example.org/digitwin/instance/ALM%3ATT-104-HH> .
+<http://example.org/digitwin/instance/IT-101> kl:monitors <http://example.org/digitwin/instance/P-101.MOTOR> .
+<http://example.org/digitwin/instance/IT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AIT-101-L> .
+<http://example.org/digitwin/instance/IT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AIT-101-H> .
+<http://example.org/digitwin/instance/IT-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AIT-101-HH> .
+<http://example.org/digitwin/instance/LS-101> kl:monitors <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/LS-101> kl:triggers <http://example.org/digitwin/instance/ALM%3ALS-101-H> .
+<http://example.org/digitwin/instance/LT-100> kl:monitors <http://example.org/digitwin/instance/TK-100> .
+<http://example.org/digitwin/instance/LT-100> kl:triggers <http://example.org/digitwin/instance/ALM%3ALT-100-LL> .
+<http://example.org/digitwin/instance/LT-100> kl:triggers <http://example.org/digitwin/instance/ALM%3ALT-100-L> .
+<http://example.org/digitwin/instance/LT-100> kl:triggers <http://example.org/digitwin/instance/ALM%3ALT-100-H> .
+<http://example.org/digitwin/instance/PDT-100> kl:monitors <http://example.org/digitwin/instance/STR-100> .
+<http://example.org/digitwin/instance/PDT-100> kl:triggers <http://example.org/digitwin/instance/ALM%3APDT-100-H> .
+<http://example.org/digitwin/instance/PDT-100> kl:triggers <http://example.org/digitwin/instance/ALM%3APDT-100-HH> .
+<http://example.org/digitwin/instance/NPSH-101> kl:derived_from <http://example.org/digitwin/instance/PT-101> .
+<http://example.org/digitwin/instance/NPSH-101> kl:derived_from <http://example.org/digitwin/instance/TT-102> .
+<http://example.org/digitwin/instance/NPSH-101> kl:derived_from <http://example.org/digitwin/instance/FT-101> .
+<http://example.org/digitwin/instance/NPSH-101> kl:triggers <http://example.org/digitwin/instance/ALM%3ANPSH-101-LL> .
+<http://example.org/digitwin/instance/NPSH-101> kl:triggers <http://example.org/digitwin/instance/ALM%3ANPSH-101-L> .
+<http://example.org/digitwin/instance/HEAD-101> kl:derived_from <http://example.org/digitwin/instance/PT-101> .
+<http://example.org/digitwin/instance/HEAD-101> kl:derived_from <http://example.org/digitwin/instance/PT-102> .
+<http://example.org/digitwin/instance/HEAD-101> kl:derived_from <http://example.org/digitwin/instance/TT-102> .
+<http://example.org/digitwin/instance/HEAD-101> kl:derived_from <http://example.org/digitwin/instance/FT-101> .
+<http://example.org/digitwin/instance/HEAD-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AHEAD-101-LL> .
+<http://example.org/digitwin/instance/HEAD-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AHEAD-101-L> .
+<http://example.org/digitwin/instance/HEAD-101> kl:triggers <http://example.org/digitwin/instance/ALM%3AHEAD-101-H> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:occurs_in <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ALOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ALOW> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:propagates_to <http://example.org/digitwin/instance/FM-IMPELLER-WEAR> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:propagates_to <http://example.org/digitwin/instance/FM-SEAL-LEAK> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:mitigated_by <http://example.org/digitwin/instance/A-LIMIT-FLOW> .
+<http://example.org/digitwin/instance/FM-CAVITATION> kl:mitigated_by <http://example.org/digitwin/instance/A-NPSH-CHECK> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:occurs_in <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-BEARING> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-BEARING> kl:mitigated_by <http://example.org/digitwin/instance/A-VIB-SPECTRUM> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:mitigated_by <http://example.org/digitwin/instance/A-LUBE-CHECK> .
+<http://example.org/digitwin/instance/FM-BEARING> kl:mitigated_by <http://example.org/digitwin/instance/A-PLAN-SHUTDOWN> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:occurs_in <http://example.org/digitwin/instance/P-101.COUPLING> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:propagates_to <http://example.org/digitwin/instance/FM-BEARING> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:propagates_to <http://example.org/digitwin/instance/FM-SEAL-LEAK> .
+<http://example.org/digitwin/instance/FM-MISALIGNMENT> kl:mitigated_by <http://example.org/digitwin/instance/A-VIB-SPECTRUM> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:occurs_in <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:propagates_to <http://example.org/digitwin/instance/FM-BEARING> .
+<http://example.org/digitwin/instance/FM-IMBALANCE> kl:mitigated_by <http://example.org/digitwin/instance/A-VIB-SPECTRUM> .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:occurs_in <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aseal_leak%3AHIGH> .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aseal_leak%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-SEAL-LEAK> kl:mitigated_by <http://example.org/digitwin/instance/A-PLAN-SHUTDOWN> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:occurs_in <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:propagates_to <http://example.org/digitwin/instance/FM-SEAL-LEAK> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:mitigated_by <http://example.org/digitwin/instance/A-STOP-PUMP> .
+<http://example.org/digitwin/instance/FM-DRY-RUN> kl:mitigated_by <http://example.org/digitwin/instance/A-RESTORE-SUCTION> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:occurs_in <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3AHIGH> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:mitigated_by <http://example.org/digitwin/instance/A-OPEN-DISCHARGE> .
+<http://example.org/digitwin/instance/FM-DEADHEAD> kl:mitigated_by <http://example.org/digitwin/instance/A-STOP-PUMP> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:occurs_in <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Amotor_current%3ANORMAL> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Amotor_current%3ANORMAL> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> ; kl:relation "manifests_as" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-IMPELLER-WEAR> kl:mitigated_by <http://example.org/digitwin/instance/A-PERF-TEST> .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:occurs_in <http://example.org/digitwin/instance/P-101.MOTOR> .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Amotor_current%3AHIGH> .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Amotor_current%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:manifests_as <http://example.org/digitwin/instance/SYM%3Amotor_winding_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Amotor_winding_temperature%3AHIGH> ; kl:relation "manifests_as" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:mitigated_by <http://example.org/digitwin/instance/A-REDUCE-FLOW> .
+<http://example.org/digitwin/instance/FM-OVERLOAD> kl:mitigated_by <http://example.org/digitwin/instance/A-ELEC-CHECK> .
+<http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ALOW> kl:observed_by <http://example.org/digitwin/instance/NPSH-101> .
+<http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> kl:observed_by <http://example.org/digitwin/instance/PT-101> .
+<http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/VT-101> .
+<http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ALOW> kl:observed_by <http://example.org/digitwin/instance/HEAD-101> .
+<http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> kl:observed_by <http://example.org/digitwin/instance/PT-102> .
+<http://example.org/digitwin/instance/SYM%3Aflow%3ALOW> kl:observed_by <http://example.org/digitwin/instance/FT-101> .
+<http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/TT-101> .
+<http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/VT-102> .
+<http://example.org/digitwin/instance/SYM%3Anpsh_margin%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/NPSH-101> .
+<http://example.org/digitwin/instance/SYM%3Aaxial_vibration%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/VT-102> .
+<http://example.org/digitwin/instance/SYM%3Abearing_temperature%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/TT-101> .
+<http://example.org/digitwin/instance/SYM%3Ahead_ratio%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/HEAD-101> .
+<http://example.org/digitwin/instance/SYM%3Aseal_leak%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/LS-101> .
+<http://example.org/digitwin/instance/SYM%3Aseal_chamber_temperature%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/TT-104> .
+<http://example.org/digitwin/instance/SYM%3Aflow%3ALOW_LOW> kl:observed_by <http://example.org/digitwin/instance/FT-101> .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3ALOW> kl:observed_by <http://example.org/digitwin/instance/IT-101> .
+<http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/PT-102> .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/IT-101> .
+<http://example.org/digitwin/instance/SYM%3Amotor_current%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/IT-101> .
+<http://example.org/digitwin/instance/SYM%3Amotor_winding_temperature%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/TT-103> .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:causes <http://example.org/digitwin/instance/FM-CAVITATION> .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:causes <http://example.org/digitwin/instance/FM-DRY-RUN> .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Astrainer_dp%3AHIGH> .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Astrainer_dp%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:located_in <http://example.org/digitwin/instance/STR-100> .
+<http://example.org/digitwin/instance/RC-STRAINER-CLOGGED> kl:remedied_by <http://example.org/digitwin/instance/A-CLEAN-STRAINER> .
+<http://example.org/digitwin/instance/SYM%3Astrainer_dp%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/PDT-100> .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> kl:causes <http://example.org/digitwin/instance/FM-CAVITATION> .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW> .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW> ; kl:relation "evidenced_by" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> kl:located_in <http://example.org/digitwin/instance/TK-100> .
+<http://example.org/digitwin/instance/RC-LOW-TANK-LEVEL> kl:remedied_by <http://example.org/digitwin/instance/A-RESTORE-LEVEL> .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW> kl:observed_by <http://example.org/digitwin/instance/LT-100> .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> kl:causes <http://example.org/digitwin/instance/FM-CAVITATION> .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> kl:located_in <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/RC-HIGH-FLUID-TEMP> kl:remedied_by <http://example.org/digitwin/instance/A-COOL-FLUID> .
+<http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/TT-102> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:causes <http://example.org/digitwin/instance/FM-CAVITATION> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Astrainer_dp%3ANORMAL> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Astrainer_dp%3ANORMAL> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> ; kl:relation "evidenced_by" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3ANORMAL> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3ANORMAL> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:located_in <http://example.org/digitwin/instance/HV-101> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-THROTTLED> kl:remedied_by <http://example.org/digitwin/instance/A-OPEN-SUCTION-VALVE> .
+<http://example.org/digitwin/instance/SYM%3Astrainer_dp%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/PDT-100> .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/LT-100> .
+<http://example.org/digitwin/instance/SYM%3Afluid_temperature%3ANORMAL> kl:observed_by <http://example.org/digitwin/instance/TT-102> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:causes <http://example.org/digitwin/instance/FM-CAVITATION> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:causes <http://example.org/digitwin/instance/FM-OVERLOAD> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Aflow%3AHIGH> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aflow%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Adischarge_pressure%3ALOW> ; kl:relation "evidenced_by" ; kl:weight "1.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:located_in <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/RC-RUNOUT> kl:remedied_by <http://example.org/digitwin/instance/A-REDUCE-FLOW> .
+<http://example.org/digitwin/instance/SYM%3Aflow%3AHIGH> kl:observed_by <http://example.org/digitwin/instance/FT-101> .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:causes <http://example.org/digitwin/instance/FM-DRY-RUN> .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW_LOW> .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW_LOW> ; kl:relation "evidenced_by" ; kl:weight "3.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:located_in <http://example.org/digitwin/instance/TK-100> .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:remedied_by <http://example.org/digitwin/instance/A-RESTORE-LEVEL> .
+<http://example.org/digitwin/instance/RC-EMPTY-TANK> kl:remedied_by <http://example.org/digitwin/instance/A-REPRIME> .
+<http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ALOW_LOW> kl:observed_by <http://example.org/digitwin/instance/LT-100> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:causes <http://example.org/digitwin/instance/FM-DRY-RUN> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_pressure%3ALOW> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "true"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Asuction_tank_level%3ANORMAL> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:located_in <http://example.org/digitwin/instance/HV-101> .
+<http://example.org/digitwin/instance/RC-SUCTION-VALVE-CLOSED> kl:remedied_by <http://example.org/digitwin/instance/A-OPEN-SUCTION-VALVE> .
+<http://example.org/digitwin/instance/RC-LOSS-OF-PRIME> kl:causes <http://example.org/digitwin/instance/FM-DRY-RUN> .
+<http://example.org/digitwin/instance/RC-LOSS-OF-PRIME> kl:located_in <http://example.org/digitwin/instance/P-101.CASING> .
+<http://example.org/digitwin/instance/RC-LOSS-OF-PRIME> kl:remedied_by <http://example.org/digitwin/instance/A-REPRIME> .
+<http://example.org/digitwin/instance/RC-LUBRICATION> kl:causes <http://example.org/digitwin/instance/FM-BEARING> .
+<http://example.org/digitwin/instance/RC-LUBRICATION> kl:located_in <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/RC-LUBRICATION> kl:remedied_by <http://example.org/digitwin/instance/A-RELUBRICATE> .
+<http://example.org/digitwin/instance/RC-LUBE-CONTAMINATION> kl:causes <http://example.org/digitwin/instance/FM-BEARING> .
+<http://example.org/digitwin/instance/RC-LUBE-CONTAMINATION> kl:located_in <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/RC-LUBE-CONTAMINATION> kl:remedied_by <http://example.org/digitwin/instance/A-RELUBRICATE> .
+<http://example.org/digitwin/instance/RC-LUBE-CONTAMINATION> kl:remedied_by <http://example.org/digitwin/instance/A-REPLACE-BEARING> .
+<http://example.org/digitwin/instance/RC-BEARING-FATIGUE> kl:causes <http://example.org/digitwin/instance/FM-BEARING> .
+<http://example.org/digitwin/instance/RC-BEARING-FATIGUE> kl:located_in <http://example.org/digitwin/instance/P-101.BRG-DE> .
+<http://example.org/digitwin/instance/RC-BEARING-FATIGUE> kl:remedied_by <http://example.org/digitwin/instance/A-REPLACE-BEARING> .
+<http://example.org/digitwin/instance/RC-INSTALL-MISALIGN> kl:causes <http://example.org/digitwin/instance/FM-MISALIGNMENT> .
+<http://example.org/digitwin/instance/RC-INSTALL-MISALIGN> kl:located_in <http://example.org/digitwin/instance/P-101.COUPLING> .
+<http://example.org/digitwin/instance/RC-INSTALL-MISALIGN> kl:remedied_by <http://example.org/digitwin/instance/A-ALIGN> .
+<http://example.org/digitwin/instance/RC-PIPE-STRAIN> kl:causes <http://example.org/digitwin/instance/FM-MISALIGNMENT> .
+<http://example.org/digitwin/instance/RC-PIPE-STRAIN> kl:located_in <http://example.org/digitwin/instance/P-101.CASING> .
+<http://example.org/digitwin/instance/RC-PIPE-STRAIN> kl:remedied_by <http://example.org/digitwin/instance/A-PIPE-SUPPORT> .
+<http://example.org/digitwin/instance/RC-PIPE-STRAIN> kl:remedied_by <http://example.org/digitwin/instance/A-ALIGN> .
+<http://example.org/digitwin/instance/RC-SOFT-FOOT> kl:causes <http://example.org/digitwin/instance/FM-MISALIGNMENT> .
+<http://example.org/digitwin/instance/RC-SOFT-FOOT> kl:located_in <http://example.org/digitwin/instance/P-101.BASEPLATE> .
+<http://example.org/digitwin/instance/RC-SOFT-FOOT> kl:remedied_by <http://example.org/digitwin/instance/A-SOFT-FOOT> .
+<http://example.org/digitwin/instance/RC-SOFT-FOOT> kl:remedied_by <http://example.org/digitwin/instance/A-ALIGN> .
+<http://example.org/digitwin/instance/RC-IMPELLER-FOULING> kl:causes <http://example.org/digitwin/instance/FM-IMBALANCE> .
+<http://example.org/digitwin/instance/RC-IMPELLER-FOULING> kl:located_in <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/RC-IMPELLER-FOULING> kl:remedied_by <http://example.org/digitwin/instance/A-BALANCE-IMPELLER> .
+<http://example.org/digitwin/instance/RC-IMPELLER-DAMAGE> kl:causes <http://example.org/digitwin/instance/FM-IMBALANCE> .
+<http://example.org/digitwin/instance/RC-IMPELLER-DAMAGE> kl:causes <http://example.org/digitwin/instance/FM-IMPELLER-WEAR> .
+<http://example.org/digitwin/instance/RC-IMPELLER-DAMAGE> kl:located_in <http://example.org/digitwin/instance/P-101.IMPELLER> .
+<http://example.org/digitwin/instance/RC-IMPELLER-DAMAGE> kl:remedied_by <http://example.org/digitwin/instance/A-REPLACE-IMPELLER> .
+<http://example.org/digitwin/instance/RC-WEAR-RING-WEAR> kl:causes <http://example.org/digitwin/instance/FM-IMPELLER-WEAR> .
+<http://example.org/digitwin/instance/RC-WEAR-RING-WEAR> kl:located_in <http://example.org/digitwin/instance/P-101.WEAR-RINGS> .
+<http://example.org/digitwin/instance/RC-WEAR-RING-WEAR> kl:remedied_by <http://example.org/digitwin/instance/A-RESTORE-CLEARANCE> .
+<http://example.org/digitwin/instance/RC-SEAL-FACE-WEAR> kl:causes <http://example.org/digitwin/instance/FM-SEAL-LEAK> .
+<http://example.org/digitwin/instance/RC-SEAL-FACE-WEAR> kl:located_in <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/RC-SEAL-FACE-WEAR> kl:remedied_by <http://example.org/digitwin/instance/A-REPLACE-SEAL> .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> kl:causes <http://example.org/digitwin/instance/FM-SEAL-LEAK> .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Afluid_temperature%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "2.0"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> kl:located_in <http://example.org/digitwin/instance/P-101.SEAL> .
+<http://example.org/digitwin/instance/RC-ELASTOMER-DEGRADATION> kl:remedied_by <http://example.org/digitwin/instance/A-REPLACE-SEAL> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-VALVE-CLOSED> kl:causes <http://example.org/digitwin/instance/FM-DEADHEAD> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-VALVE-CLOSED> kl:located_in <http://example.org/digitwin/instance/HV-102> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-VALVE-CLOSED> kl:remedied_by <http://example.org/digitwin/instance/A-OPEN-DISCHARGE> .
+<http://example.org/digitwin/instance/RC-CHECK-VALVE-STUCK> kl:causes <http://example.org/digitwin/instance/FM-DEADHEAD> .
+<http://example.org/digitwin/instance/RC-CHECK-VALVE-STUCK> kl:located_in <http://example.org/digitwin/instance/NRV-102> .
+<http://example.org/digitwin/instance/RC-CHECK-VALVE-STUCK> kl:remedied_by <http://example.org/digitwin/instance/A-REPAIR-CHECK-VALVE> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-BLOCKED> kl:causes <http://example.org/digitwin/instance/FM-DEADHEAD> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-BLOCKED> kl:located_in <http://example.org/digitwin/instance/HV-102> .
+<http://example.org/digitwin/instance/RC-DISCHARGE-BLOCKED> kl:remedied_by <http://example.org/digitwin/instance/A-CLEAR-DISCHARGE> .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:causes <http://example.org/digitwin/instance/FM-OVERLOAD> .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Aradial_vibration%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:evidenced_by <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:signatureEntry [ kl:symptom <http://example.org/digitwin/instance/SYM%3Abearing_temperature%3AHIGH> ; kl:relation "evidenced_by" ; kl:weight "1.5"^^xsd:double ; kl:keySymptom "false"^^xsd:boolean ] .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:located_in <http://example.org/digitwin/instance/P-101.SHAFT> .
+<http://example.org/digitwin/instance/RC-MECH-BINDING> kl:remedied_by <http://example.org/digitwin/instance/A-FREE-ROTOR> .
+<http://example.org/digitwin/instance/RC-SUPPLY-VOLTAGE> kl:causes <http://example.org/digitwin/instance/FM-OVERLOAD> .
+<http://example.org/digitwin/instance/RC-SUPPLY-VOLTAGE> kl:located_in <http://example.org/digitwin/instance/P-101.MOTOR> .
+<http://example.org/digitwin/instance/RC-SUPPLY-VOLTAGE> kl:remedied_by <http://example.org/digitwin/instance/A-ELEC-CHECK> .
+<http://example.org/digitwin/instance/RC-DENSE-FLUID> kl:causes <http://example.org/digitwin/instance/FM-OVERLOAD> .
+<http://example.org/digitwin/instance/RC-DENSE-FLUID> kl:located_in <http://example.org/digitwin/instance/P-101> .
+<http://example.org/digitwin/instance/RC-DENSE-FLUID> kl:remedied_by <http://example.org/digitwin/instance/A-CHECK-FLUID> .
