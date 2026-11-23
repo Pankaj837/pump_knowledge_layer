@@ -1,6 +1,6 @@
 # Knowledge Layer for Centrifugal Pump Failures
 
-**Author:** Pankaj Gurjar · DigiTwin Technology internship technical screening challenge
+**Author:** Pankaj Gurjar (Roll No. 24B0328) · DigiTwin Technology internship technical screening challenge
 
 A programmatic **semantic-causal diagnostic network** for an industrial centrifugal pump (P-101, cooling-water
 service), written in Python. It turns raw sensor readings into a root-cause diagnosis that you can trace step by step,
