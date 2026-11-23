@@ -13,7 +13,7 @@ curve (see physics.py): e.g. the discharge-pressure NORMAL band 5.6-7.2 bar(a)
 corresponds to the API 610 Preferred Operating Region (70-120 % of rated flow).
 Vibration limits follow ISO 10816-3, Group 2 machines (15-300 kW), flexible
 support: 4.5 mm/s = zone C (alert), 7.1 mm/s = zone D (danger).
-Root-cause `prior` values are engineering-judgement placeholders that a real
+Root-cause `prior` values are engineering-judgement estimates that a real
 deployment would replace with CMMS failure statistics.
 """
 

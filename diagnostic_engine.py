@@ -267,7 +267,7 @@ def diagnose_fault(sensor_states: Mapping[str, Any], graph: nx.DiGraph | None = 
     if derived and "fluid_temperature" not in numeric:
         warnings.append(f"fluid_temperature not provided: design value {params['design_fluid_temp_c']} degC "
                         "assumed for NPSH / head calculations")
-    derived_keys = {key for key in derived if key in signals and key not in numeric and key not in discrete}
+    derived_keys = [key for key in derived if key in signals and key not in numeric and key not in discrete]
     for key in derived_keys:
         numeric[key] = derived[key]
 
